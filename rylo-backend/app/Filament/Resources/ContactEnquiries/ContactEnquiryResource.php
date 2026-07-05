@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Filament\Resources\ContactEnquiries;
+
+use App\Filament\Resources\ContactEnquiries\Pages\CreateContactEnquiry;
+use App\Filament\Resources\ContactEnquiries\Pages\EditContactEnquiry;
+use App\Filament\Resources\ContactEnquiries\Pages\ListContactEnquiries;
+use App\Filament\Resources\ContactEnquiries\Schemas\ContactEnquiryForm;
+use App\Filament\Resources\ContactEnquiries\Tables\ContactEnquiriesTable;
+use App\Models\ContactEnquiry;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+use UnitEnum;
+
+class ContactEnquiryResource extends Resource
+{
+   protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
+
+protected static string|\UnitEnum|null $navigationGroup = 'Enquiries';
+
+protected static ?string $navigationLabel = 'Contact Enquiries';
+
+    public static function form(Schema $schema): Schema
+    {
+        return ContactEnquiryForm::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return ContactEnquiriesTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListContactEnquiries::route('/'),
+            'create' => CreateContactEnquiry::route('/create'),
+            'edit' => EditContactEnquiry::route('/{record}/edit'),
+        ];
+    }
+}
