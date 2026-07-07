@@ -130,6 +130,16 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
+<li>
+  <a
+    href="https://api.rylosupport.in/admin"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:text-purple-300 transition"
+  >
+    Admin Login
+  </a>
+</li>
 
             </ul>
 
