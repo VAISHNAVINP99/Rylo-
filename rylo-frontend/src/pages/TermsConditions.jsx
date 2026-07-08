@@ -15,7 +15,7 @@ export default function TermsConditions() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/terms-conditions")
+      .get("https://api.rylosupport.in/api/terms-conditions")
       .then((res) => {
         setTerms(res.data);
         setLoading(false);

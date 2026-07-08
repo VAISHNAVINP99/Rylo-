@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/privacy-policy")
+      .get("https://api.rylosupport.in/api/privacy-policy")
       .then((res) => {
         setPrivacy(res.data);
         setLoading(false);

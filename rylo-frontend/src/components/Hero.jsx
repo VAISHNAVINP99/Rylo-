@@ -130,7 +130,7 @@ export default function Hero() {
                             {/* Image */}
 
                             <img
-                                src={`http://127.0.0.1:8000/storage/${hero.image}`}
+                                src={`https://api.rylosupport.in/storage/${hero.image}`}
                                 alt={hero.title}
                                 className="relative z-10 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl object-contain"
                             />

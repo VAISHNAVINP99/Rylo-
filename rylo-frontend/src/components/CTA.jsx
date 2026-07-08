@@ -13,7 +13,7 @@ export default function CTA() {
         try {
 
             const response = await axios.get(
-                "http://127.0.0.1:8000/api/cta"
+                "https://api.rylosupport.in/api/cta"
             );
 
             setCta(response.data);

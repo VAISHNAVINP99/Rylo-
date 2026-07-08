@@ -19,7 +19,7 @@ export default function ServiceDetails() {
     const fetchService = async () => {
         try {
             const res = await axios.get(
-                `http://127.0.0.1:8000/api/services/${slug}`
+                `https://api.rylosupport.in/api/services/${slug}`
             );
 
             setService(res.data);

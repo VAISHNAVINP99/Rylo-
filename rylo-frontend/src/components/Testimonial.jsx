@@ -13,7 +13,7 @@ export default function Testimonial() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/reviews")
+      .get("https://api.rylosupport.in/api/reviews")
       .then((response) => {
         setReviews(response.data);
         setLoading(false);

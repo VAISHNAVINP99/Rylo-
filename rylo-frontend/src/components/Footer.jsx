@@ -132,7 +132,7 @@ export default function Footer() {
               </li>
 <li>
   <a
-    href="https://api.rylosupport.in/admin"
+    href="https://api.rylosupport.in/admin/login"
     target="_blank"
     rel="noopener noreferrer"
     className="hover:text-purple-300 transition"

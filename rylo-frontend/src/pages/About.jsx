@@ -15,7 +15,7 @@ export default function About() {
     const fetchAbout = async () => {
         try {
             const res = await axios.get(
-                "http://127.0.0.1:8000/api/about"
+                "https://api.rylosupport.in/api/about"
             );
 
             setAbout(res.data.about);

@@ -19,7 +19,7 @@ export default function WhyChoose() {
     const fetchWhyChoose = async () => {
         try {
             const res = await axios.get(
-                "http://127.0.0.1:8000/api/why-choose"
+                "https://api.rylosupport.in/api/why-choose"
             );
             setItems(res.data);
         } catch (error) {

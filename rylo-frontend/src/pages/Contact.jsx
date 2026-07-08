@@ -36,7 +36,7 @@ export default function Contact() {
 
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/contact-enquiries",
+        "https://api.rylosupport.in/api/contact-enquiries",
         formData
       );
 

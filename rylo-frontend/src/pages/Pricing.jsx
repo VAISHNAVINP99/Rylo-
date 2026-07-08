@@ -22,7 +22,7 @@ export default function Pricing() {
 
   const fetchPricing = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/pricing");
+      const res = await axios.get("https://api.rylosupport.in/api/pricing");
       setServices(res.data);
     } catch (error) {
       console.log(error);

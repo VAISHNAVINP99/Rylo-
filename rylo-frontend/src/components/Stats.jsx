@@ -13,7 +13,7 @@ export default function Stats() {
         try {
 
             const response = await axios.get(
-                "http://127.0.0.1:8000/api/stats"
+                "https://api.rylosupport.in/api/stats"
             );
 
             setStats(response.data);
