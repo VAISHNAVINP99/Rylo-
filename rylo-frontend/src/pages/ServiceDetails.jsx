@@ -58,7 +58,7 @@ export default function ServiceDetails() {
                         <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl">
 
                             <img
-                                src={`http://127.0.0.1:8000/storage/${service.image}`}
+                                src={`https://api.rylosupport.in/storage/${service.image}`}
                                 alt={service.title}
                                 className="w-full h-[300px] sm:h-[450px] object-cover"
                             />

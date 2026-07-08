@@ -79,7 +79,7 @@ export default function Testimonial() {
                     <img
                       src={
                         review.image
-                          ? `http://127.0.0.1:8000/storage/${review.image}`
+                          ? `https://api.rylosupport.in/storage/${review.image}`
                           : "https://via.placeholder.com/100"
                       }
                       alt={review.name}

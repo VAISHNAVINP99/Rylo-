@@ -64,7 +64,7 @@ export default function About() {
                             <div className="absolute -top-5 -left-5 w-full h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl"></div>
 
                           <img
-    src={`http://127.0.0.1:8000/storage/${about.image}`}
+    src={`https://api.rylosupport.in/storage/${about.image}`}
     alt={about.company_name}
 
                                 className="relative rounded-3xl shadow-2xl w-full object-cover z-10"

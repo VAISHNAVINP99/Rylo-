@@ -16,7 +16,7 @@ export default function Footer() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/footer")
+      .get("https://api.rylosupport.in/api/footer")
       .then((res) => setFooter(res.data))
       .catch((err) => console.log(err));
   }, []);

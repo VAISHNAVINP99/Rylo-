@@ -12,7 +12,7 @@ export default function Hero() {
 
     const fetchHero = async () => {
         try {
-            const res = await axios.get("http://127.0.0.1:8000/api/hero");
+            const res = await axios.get("https://api.rylosupport.in/api/hero");
             setHero(res.data);
         } catch (error) {
             console.log(error);

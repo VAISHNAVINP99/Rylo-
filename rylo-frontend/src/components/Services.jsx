@@ -65,7 +65,7 @@ export default function Services() {
                             <div className="overflow-hidden h-60">
 
                 <img
-    src={`http://127.0.0.1:8000/storage/${service.image}`}
+    src={`https://api.rylosupport.in/storage/${service.image}`}
                                 alt={service.title}
     alt={service.title}
     className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
