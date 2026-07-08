@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -52,6 +52,28 @@ const handleSubmit = async (e) => {
     alert("Booking Failed");
   }
 };
+
+
+
+useEffect(() => {
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.rylosupport.in/api/services"
+      );
+
+      
+
+      console.log(response.data);
+
+      setServices(response.data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    }
+  };
+
+  fetchServices();
+}, []);
 
   return (
     <>
