@@ -21,18 +21,14 @@ class AboutForm
     ->disk('public')
     ->directory('about'),
 
- TextColumn::make('Banner_Title')
-                ->label('Banner Title')
-                ->searchable()
-                ->limit(30),
+TextInput::make('hero_title')
+    ->required(),
 
-            TextColumn::make('Banner_subtitle')
-                ->label('Banner Subtitle')
-                ->limit(40),
+TextInput::make('hero_subtitle')
+    ->required(),
 
-            TextColumn::make('About_title')
-                ->label('About Title')
-                ->limit(30),
+TextInput::make('who_we_are_title')
+    ->required(),
 TextInput::make('company_name')
     ->required(),
 
