@@ -66,7 +66,7 @@ useEffect(() => {
 
       console.log(response.data);
 
-      setServices(response.data);
+      setServices(response.data.data);
     } catch (error) {
       console.error("Error fetching services:", error);
     }

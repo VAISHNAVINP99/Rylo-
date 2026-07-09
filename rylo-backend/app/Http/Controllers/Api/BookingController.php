@@ -10,39 +10,71 @@ class BookingController extends Controller
 {
     public function index()
     {
-        return Booking::latest()->get();
+        return response()->json(Booking::latest()->get());
     }
 
     public function store(Request $request)
     {
-        $booking = Booking::create($request->all());
+        $validated = $request->validate([
+            'customer_name' => 'required|string|max:255',
+            'mobile' => 'required|string|max:20',
+            'whatsapp' => 'required|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'service_id' => 'required|exists:services,id',
+            'date' => 'required|date',
+            'time' => 'required',
+            'duration' => 'required',
+            'location' => 'required|string|max:255',
+            'notes' => 'nullable|string',
+        ]);
+
+        $booking = Booking::create($validated);
 
         return response()->json([
             'success' => true,
-            'data' => $booking
-        ]);
+            'message' => 'Booking submitted successfully.',
+            'data' => $booking,
+        ], 201);
     }
 
     public function show($id)
     {
-        return Booking::findOrFail($id);
+        return response()->json(Booking::findOrFail($id));
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $booking = Booking::findOrFail($id);
 
-        $booking->update($request->all());
+        $validated = $request->validate([
+            'customer_name' => 'sometimes|string|max:255',
+            'mobile' => 'sometimes|string|max:20',
+            'whatsapp' => 'sometimes|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'service_id' => 'sometimes|exists:services,id',
+            'date' => 'sometimes|date',
+            'time' => 'sometimes',
+            'duration' => 'sometimes',
+            'location' => 'sometimes|string|max:255',
+            'notes' => 'nullable|string',
+            'status' => 'sometimes|string',
+        ]);
 
-        return $booking;
+        $booking->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'data' => $booking,
+        ]);
     }
 
     public function destroy($id)
     {
-        Booking::destroy($id);
+        Booking::findOrFail($id)->delete();
 
         return response()->json([
-            'success'=>true
+            'success' => true,
+            'message' => 'Booking deleted successfully.',
         ]);
     }
 }

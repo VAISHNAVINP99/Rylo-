@@ -14,14 +14,9 @@ class Service extends Model
         'image',
         'status',
     ];
+  public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class, 'service_id');
+    }
 
-    public function servicePricing()
-{
-    return $this->hasOne(ServicePricing::class, 'service_id');
-}
-
-public function pricingFeatures()
-{
-    return $this->hasMany(PricingFeature::class, 'service_id');
-}
 }

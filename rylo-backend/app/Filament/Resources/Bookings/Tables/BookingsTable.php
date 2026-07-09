@@ -22,9 +22,10 @@ class BookingsTable
                     ->searchable(),
                     TextColumn::make('email')
     ->label('Email'),
-                TextColumn::make('service_id')
-                    ->numeric()
-                    ->sortable(),
+               TextColumn::make('service.title')
+    ->label('Service')
+    ->searchable()
+    ->sortable(),
                 TextColumn::make('date')
                     ->date()
                     ->sortable(),
