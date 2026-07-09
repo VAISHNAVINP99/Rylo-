@@ -56,23 +56,21 @@ const handleSubmit = async (e) => {
 
 
 useEffect(() => {
-  const fetchServices = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.rylosupport.in/api/services"
-      );
+    const fetchServices = async () => {
+        try {
+            const response = await axios.get(
+                "https://api.rylosupport.in/api/services"
+            );
 
-      
+            console.log(response.data);
 
-      console.log(response.data);
+           setServices(Array.isArray(response.data) ? response.data : response.data.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-      setServices(response.data.data);
-    } catch (error) {
-      console.error("Error fetching services:", error);
-    }
-  };
-
-  fetchServices();
+    fetchServices();
 }, []);
 
   return (
