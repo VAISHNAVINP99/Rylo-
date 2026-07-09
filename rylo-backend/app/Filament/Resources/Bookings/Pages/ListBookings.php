@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Bookings\Pages;
 
 use App\Filament\Resources\Bookings\BookingResource;
-use Filament\Actions\CreateAction;
+
 use Filament\Resources\Pages\ListRecords;
 
 class ListBookings extends ListRecords
@@ -12,8 +12,6 @@ class ListBookings extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            CreateAction::make(),
-        ];
+        return [];
     }
 }
