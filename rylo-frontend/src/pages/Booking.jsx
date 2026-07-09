@@ -177,6 +177,7 @@ useEffect(() => {
     <label className="font-medium">
       Select Service <span className="text-red-500">*</span>
     </label>
+    <p>Total Services: {services.length}</p>
     <select
       name="service_id"
       value={formData.service_id}
