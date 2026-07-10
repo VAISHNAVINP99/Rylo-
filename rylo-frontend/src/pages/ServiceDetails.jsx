@@ -105,44 +105,29 @@ export default function ServiceDetails() {
 
                         </div>
 
-                        {/* Features */}
+  {/* Features */}
+<div className="grid sm:grid-cols-2 gap-4 mt-8">
+  {[
+    service?.pricing?.feature1,
+    service?.pricing?.feature2,
+    service?.pricing?.feature3,
+    service?.pricing?.feature4,
+  ]
+    .filter(Boolean)
+    .map((feature, index) => (
+      <div
+        key={index}
+        className="flex items-center gap-3 bg-white rounded-xl p-4 shadow"
+      >
+        {index === 0 && <FaCheckCircle className="text-green-600 text-xl" />}
+        {index === 1 && <FaClock className="text-purple-700 text-xl" />}
+        {index === 2 && <FaShieldAlt className="text-blue-600 text-xl" />}
+        {index === 3 && <FaCheckCircle className="text-green-600 text-xl" />}
 
-                        <div className="grid sm:grid-cols-2 gap-4 mt-8">
-
-                            <div className="flex items-center gap-3 bg-white rounded-xl p-4 shadow">
-
-                                <FaCheckCircle className="text-green-600 text-xl" />
-
-                                <span>Verified Professionals</span>
-
-                            </div>
-
-                            <div className="flex items-center gap-3 bg-white rounded-xl p-4 shadow">
-
-                                <FaClock className="text-purple-700 text-xl" />
-
-                                <span>Flexible Booking</span>
-
-                            </div>
-
-                            <div className="flex items-center gap-3 bg-white rounded-xl p-4 shadow">
-
-                                <FaShieldAlt className="text-blue-600 text-xl" />
-
-                                <span>Trusted Service</span>
-
-                            </div>
-
-                            <div className="flex items-center gap-3 bg-white rounded-xl p-4 shadow">
-
-                                <FaCheckCircle className="text-green-600 text-xl" />
-
-                                <span>Affordable Pricing</span>
-
-                            </div>
-
-                        </div>
-
+        <span>{feature}</span>
+      </div>
+    ))}
+</div>
                         {/* Buttons */}
 
                         <div className="flex flex-col sm:flex-row gap-5 mt-10">

@@ -51,11 +51,11 @@ export default function Services() {
                 key={service.id}
                 className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300"
               >
-                <img
-                  src={service.image_url}
-                  alt={service.title}
-                  className="w-full h-56 object-cover"
-                />
+               <img
+  src={`https://api.rylosupport.in/storage/${service.image}`}
+  alt={service.title}
+  className="w-full h-56 object-cover"
+/>
 
                 <div className="p-6">
 
