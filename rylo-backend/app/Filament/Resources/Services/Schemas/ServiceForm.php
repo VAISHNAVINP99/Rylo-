@@ -35,6 +35,21 @@ class ServiceForm
             Forms\Components\TextInput::make('price')
                 ->numeric()
                 ->required(),
+                TextInput::make('feature1')
+    ->label('Feature 1')
+    ->maxLength(255),
+
+TextInput::make('feature2')
+    ->label('Feature 2')
+    ->maxLength(255),
+
+TextInput::make('feature3')
+    ->label('Feature 3')
+    ->maxLength(255),
+
+TextInput::make('feature4')
+    ->label('Feature 4')
+    ->maxLength(255),
 
             FileUpload::make('image')
     ->image()

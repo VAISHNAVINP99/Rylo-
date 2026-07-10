@@ -15,10 +15,9 @@ class ServiceController extends Controller
     );
 }
 
- public function show($slug)
+public function show($slug)
 {
-    $service = Service::with('pricing')
-        ->where('slug', $slug)
+    $service = Service::where('slug', $slug)
         ->where('status', 1)
         ->firstOrFail();
 

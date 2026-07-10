@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\WhyChooseController;
 use App\Http\Controllers\Api\StatController;
 use App\Http\Controllers\Api\CtaController;
 use App\Http\Controllers\Api\FooterController;
+use App\Http\Controllers\Api\NavbarController;
 
 
 
@@ -68,4 +69,6 @@ Route::get(
 
 
 Route::get('/privacy-policy', [PrivacyPolicyController::class,'index']);
+
+Route::get('/navbar', [NavbarController::class, 'index']);
 

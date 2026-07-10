@@ -11,6 +11,10 @@ class Service extends Model
         'slug',
         'description',
         'price',
+          'feature1',
+    'feature2',
+    'feature3',
+    'feature4',
         'image',
         'status',
     ];
@@ -19,8 +23,5 @@ class Service extends Model
         return $this->hasMany(Booking::class, 'service_id');
     }
 
-public function pricing()
-{
-    return $this->hasOne(Pricing::class);
-}
+
 }
