@@ -15,14 +15,15 @@ class ServiceController extends Controller
     );
 }
 
-    public function show($slug)
-    {
-        $service = Service::where('slug', $slug)
-            ->where('status', 1)
-            ->firstOrFail();
+ public function show($slug)
+{
+    $service = Service::with('pricing')
+        ->where('slug', $slug)
+        ->where('status', 1)
+        ->firstOrFail();
 
-        return response()->json($service);
-    }
+    return response()->json($service);
+}
 
     public function store(Request $request)
     {

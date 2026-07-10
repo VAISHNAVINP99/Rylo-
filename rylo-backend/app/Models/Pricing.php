@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pricing extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
+        'service_id',
 
         'title',
         'description',
@@ -21,6 +22,10 @@ class Pricing extends Model
         'feature4',
 
         'status',
-
     ];
+
+        public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
 }
