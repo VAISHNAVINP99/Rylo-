@@ -24,8 +24,8 @@ class Pricing extends Model
         'status',
     ];
 
-        public function service()
-    {
-        return $this->belongsTo(Service::class, 'service_id');
-    }
+  public function service()
+{
+    return $this->belongsTo(Service::class);
+}
 }
