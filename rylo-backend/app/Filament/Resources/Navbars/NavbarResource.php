@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class NavbarResource extends Resource
 {
@@ -20,7 +21,11 @@ class NavbarResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Logo';
+    protected static ?string $navigationLabel = 'Logo Add';
+
+protected static string|\UnitEnum|null $navigationGroup = 'Website Management';
+
+protected static ?int $navigationSort = 13;
 
     public static function form(Schema $schema): Schema
     {

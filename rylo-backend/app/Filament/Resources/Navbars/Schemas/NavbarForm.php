@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Navbars\Schemas;
 
 use Filament\Schemas\Schema;
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Forms\Components\FileUpload;
 
 class NavbarForm
@@ -11,12 +13,10 @@ class NavbarForm
     {
         return $schema
             ->components([
-                   Forms\Components\FileUpload::make('logo')
-            ->disk('public')
-            ->directory('navbar')
-            ->image()
-            ->imageEditor()
-            ->required(),
+                 FileUpload::make('logo')
+    ->image()
+    ->disk('public')
+    ->directory('navbar'),
             ]);
     }
 }

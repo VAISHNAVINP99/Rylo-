@@ -49,6 +49,7 @@ class TermsConditionForm
                 TextInput::make('location')
                     ->required(),
                 Toggle::make('status')
+                ->default(true)
                     ->required(),
             ]);
     }

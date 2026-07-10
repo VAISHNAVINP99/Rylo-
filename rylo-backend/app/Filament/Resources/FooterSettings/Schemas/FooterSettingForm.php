@@ -38,6 +38,7 @@ class FooterSettingForm
                 TextInput::make('copyright')
                     ->required(),
                 Toggle::make('status')
+                ->default(true)
                     ->required(),
             ]);
     }

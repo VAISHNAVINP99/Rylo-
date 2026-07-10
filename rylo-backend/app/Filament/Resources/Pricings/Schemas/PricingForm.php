@@ -39,6 +39,7 @@ class PricingForm
                 TextInput::make('feature4')
                     ->default(null),
                 Toggle::make('status')
+                ->default(true)
                     ->required(),
             ]);
     }

@@ -44,7 +44,7 @@ protected static ?string $navigationLabel = 'Contact Enquiries';
     {
         return [
             'index' => ListContactEnquiries::route('/'),
-            'create' => CreateContactEnquiry::route('/create'),
+           
             'edit' => EditContactEnquiry::route('/{record}/edit'),
         ];
     }

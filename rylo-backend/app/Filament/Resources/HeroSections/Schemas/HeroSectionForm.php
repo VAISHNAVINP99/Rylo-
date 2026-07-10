@@ -51,6 +51,7 @@ class HeroSectionForm
                     ->required()
                     ->default('100%'),
                 Toggle::make('status')
+                ->default(true)
                     ->required(),
             ]);
     }

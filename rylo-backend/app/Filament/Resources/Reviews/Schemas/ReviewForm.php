@@ -28,6 +28,7 @@ class ReviewForm
                     ->required()
                     ->columnSpanFull(),
                 Toggle::make('status')
+                ->default(true)
                     ->required(),
             ]);
     }
