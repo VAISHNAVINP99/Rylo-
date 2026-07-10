@@ -10,34 +10,63 @@ export default function ServiceDetails() {
 
     const { slug } = useParams();
 
-    const [service, setService] = useState(null);
+   const [service, setService] = useState(null);
+const [imageLoaded, setImageLoaded] = useState(false);
+const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
         fetchService();
     }, []);
 
-    const fetchService = async () => {
-        try {
-            const res = await axios.get(
-                `https://api.rylosupport.in/api/services/${slug}`
-            );
-
-            setService(res.data);
-
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    if (!service) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <h2 className="text-xl font-semibold text-gray-500">
-                    Loading Service...
-                </h2>
-            </div>
+const fetchService = async () => {
+    try {
+        const res = await axios.get(
+            `https://api.rylosupport.in/api/services/${slug}`
         );
+
+        const img = new Image();
+        img.src = `https://api.rylosupport.in/storage/${res.data.image}`;
+
+        img.onload = () => {
+            setService(res.data);
+            setImageLoaded(true);
+
+            setTimeout(() => {
+                setAnimate(true);
+            }, 100);
+        };
+
+        img.onerror = () => {
+            setService(res.data);
+            setImageLoaded(true);
+            setAnimate(true);
+        };
+
+    } catch (error) {
+        console.log(error);
     }
+};
+
+  if (!service || !imageLoaded) {
+    return (
+        <div className="max-w-7xl mx-auto px-5 py-20">
+            <div className="grid lg:grid-cols-2 gap-14 items-center">
+
+                <div className="h-[450px] rounded-3xl bg-gray-200 animate-pulse"></div>
+
+                <div className="space-y-5">
+                    <div className="h-8 w-40 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-14 w-80 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-5 w-full bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-5 w-5/6 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-5 w-4/6 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-28 bg-gray-200 rounded-2xl animate-pulse"></div>
+                </div>
+
+            </div>
+        </div>
+    );
+}
 
     return (
 <>
@@ -51,21 +80,27 @@ export default function ServiceDetails() {
 
                     {/* Image */}
 
-                    <div className="relative">
+                 <div
+    className={`relative transition-all duration-1000 ease-out ${
+        animate
+            ? "opacity-100 -translate-x-0"
+            : "opacity-0 -translate-x-24"
+    }`}
+>
+    <div className="absolute -top-5 -left-5 w-full h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl opacity-20"></div>
 
-                        <div className="absolute -top-5 -left-5 w-full h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl opacity-20"></div>
+    <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl">
 
-                        <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl">
+        <img
+            src={`https://api.rylosupport.in/storage/${service.image}`}
+            alt={service.title}
+            loading="eager"
+            decoding="async"
+            className="w-full h-[300px] sm:h-[450px] object-cover transition-transform duration-700 hover:scale-105"
+        />
 
-                            <img
-                                src={`https://api.rylosupport.in/storage/${service.image}`}
-                                alt={service.title}
-                                className="w-full h-[300px] sm:h-[450px] object-cover"
-                            />
-
-                        </div>
-
-                    </div>
+    </div>
+</div>
 
                     {/* Content */}
 

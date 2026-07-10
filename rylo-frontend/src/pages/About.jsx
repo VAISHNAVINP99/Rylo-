@@ -7,23 +7,38 @@ import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function About() {
     const [about, setAbout] = useState(null);
+    const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
         fetchAbout();
     }, []);
 
-    const fetchAbout = async () => {
-        try {
-            const res = await axios.get(
-                "https://api.rylosupport.in/api/about"
-            );
+ const fetchAbout = async () => {
+    try {
+        const res = await axios.get(
+            "https://api.rylosupport.in/api/about"
+        );
 
+        const img = new Image();
+        img.src = `https://api.rylosupport.in/storage/${res.data.about.image}`;
+
+        img.onload = () => {
             setAbout(res.data.about);
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
+            setTimeout(() => {
+                setAnimate(true);
+            }, 100);
+        };
+
+        img.onerror = () => {
+            setAbout(res.data.about);
+            setAnimate(true);
+        };
+
+    } catch (error) {
+        console.log(error);
+    }
+};
     if (!about) {
         return (
             <div className="py-40 text-center text-2xl font-semibold">
@@ -59,46 +74,55 @@ export default function About() {
 
                         {/* Image */}
 
-                        <div className="relative">
+                    <div
+    className={`relative transition-all duration-1000 ease-out ${
+        animate
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-24 opacity-0"
+    }`}
+>
+    <div className="absolute -top-5 -left-5 w-full h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl"></div>
 
-                            <div className="absolute -top-5 -left-5 w-full h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl"></div>
-
-                          <img
-    src={`https://api.rylosupport.in/storage/${about.image}`}
-    alt={about.company_name}
-
-                                className="relative rounded-3xl shadow-2xl w-full object-cover z-10"
-                            />
-
-                        </div>
+    <img
+        src={`https://api.rylosupport.in/storage/${about.image}`}
+        alt={about.company_name}
+        loading="eager"
+        decoding="async"
+        className="relative rounded-3xl shadow-2xl w-full object-cover z-10"
+    />
+</div>
 
                         {/* Content */}
 
-                        <div>
+                     <div
+    className={`transition-all duration-1000 delay-200 ease-out ${
+        animate
+            ? "translate-x-0 opacity-100"
+            : "translate-x-24 opacity-0"
+    }`}
+>
+    <span className="inline-block bg-purple-100 text-purple-700 px-5 py-2 rounded-full font-semibold uppercase">
+        {about.who_we_are_title}
+    </span>
 
-                            <span className="inline-block bg-purple-100 text-purple-700 px-5 py-2 rounded-full font-semibold uppercase">
-                                {about.who_we_are_title}
-                            </span>
+    <h2 className="mt-6 text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-700 bg-clip-text text-transparent">
+        {about.company_name}
+    </h2>
 
-                            <h2 className="mt-6 text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-700 bg-clip-text text-transparent">
-                                {about.company_name}
-                            </h2>
+    <div
+        className="mt-8 text-gray-600 leading-8"
+        dangerouslySetInnerHTML={{
+            __html: about.description_one,
+        }}
+    />
 
-                            <div
-                                className="mt-8 text-gray-600 leading-8"
-                                dangerouslySetInnerHTML={{
-                                    __html: about.description_one,
-                                }}
-                            />
-
-                            <div
-                                className="mt-6 text-gray-600 leading-8"
-                                dangerouslySetInnerHTML={{
-                                    __html: about.description_two,
-                                }}
-                            />
-
-                        </div>
+    <div
+        className="mt-6 text-gray-600 leading-8"
+        dangerouslySetInnerHTML={{
+            __html: about.description_two,
+        }}
+    />
+</div>
 
                     </div>
 

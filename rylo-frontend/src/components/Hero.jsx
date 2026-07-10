@@ -5,21 +5,52 @@ import { FaWhatsapp } from "react-icons/fa";
 
 export default function Hero() {
     const [hero, setHero] = useState(null);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     useEffect(() => {
         fetchHero();
     }, []);
 
-    const fetchHero = async () => {
-        try {
-            const res = await axios.get("https://api.rylosupport.in/api/hero");
-            setHero(res.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+const fetchHero = async () => {
+    try {
+        const res = await axios.get("https://api.rylosupport.in/api/hero");
 
-    if (!hero) return null;
+        const img = new Image();
+        img.src = `https://api.rylosupport.in/storage/${res.data.image}`;
+
+        img.onload = () => {
+            setHero(res.data);
+            setImageLoaded(true);
+        };
+
+        img.onerror = () => {
+            setHero(res.data);
+            setImageLoaded(true);
+        };
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+if (!hero || !imageLoaded) {
+    return (
+        <section className="bg-gradient-to-br from-white via-purple-50 to-blue-50 py-20">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="space-y-4">
+                        <div className="h-8 w-40 bg-gray-200 rounded animate-pulse"></div>
+                        <div className="h-14 w-full bg-gray-200 rounded animate-pulse"></div>
+                        <div className="h-6 w-3/4 bg-gray-200 rounded animate-pulse"></div>
+                    </div>
+
+                    <div className="h-[450px] rounded-3xl bg-gray-200 animate-pulse"></div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+  
 
     return (
         <section className="bg-gradient-to-br from-white via-purple-50 to-blue-50 overflow-hidden">
@@ -129,11 +160,13 @@ export default function Hero() {
 
                             {/* Image */}
 
-                            <img
-                                src={`https://api.rylosupport.in/storage/${hero.image}`}
-                                alt={hero.title}
-                                className="relative z-10 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl object-contain"
-                            />
+ <img
+    src={`https://api.rylosupport.in/storage/${hero.image}`}
+    alt={hero.title}
+    loading="eager"
+    decoding="async"
+    className="relative z-10 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl object-contain transition-all duration-700 ease-out opacity-100 scale-100"
+/>
 
                         </div>
 
