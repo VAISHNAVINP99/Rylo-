@@ -101,8 +101,15 @@ useEffect(() => {
             Services
           </Link>
 
-      
+           <Link
+            to="/job_opening"
+            onClick={closeMenu}
+            className="font-medium hover:text-purple-600"
+          >
+            Job Openings
+          </Link>
 
+          
           <Link
             to="/contact"
             onClick={closeMenu}

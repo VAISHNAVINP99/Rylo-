@@ -25,7 +25,8 @@ function App() {
            <Route path="/services" element={<Services />} />
       
           <Route path="/job_opening" element={<JobApplication />} />
-        <Route path="/book-now" element={<Booking />} />
+      
+          <Route path="/booking/:id" element={<Booking />} />
         <Route path="/contact" element={<Contact />}  /> 
     
   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
