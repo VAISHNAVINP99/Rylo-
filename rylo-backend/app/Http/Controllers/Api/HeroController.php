@@ -8,9 +8,9 @@ use App\Models\HeroSection;
 class HeroController extends Controller
 {
     public function index()
-    {
-        return response()->json(
-            HeroSection::where('status', true)->first()
-        );
-    }
+{
+    return Hero::where('status', true)
+        ->orderBy('id')
+        ->get();
+}
 }

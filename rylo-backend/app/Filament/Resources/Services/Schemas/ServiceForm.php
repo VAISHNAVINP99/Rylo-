@@ -23,41 +23,51 @@ class ServiceForm
         
         ->schema([
 
-            Forms\Components\TextInput::make('title')
-                ->required(),
+   Forms\Components\TextInput::make('title')
+                    ->label('Service Name')
+                    ->required()
+                    ->maxLength(255),
 
-            Forms\Components\TextInput::make('slug')
-                ->required()
-                ->unique(ignoreRecord: true),
+                Forms\Components\Textarea::make('description')
+                    ->label('Description')
+                    ->rows(5)
+                    ->required()
+                    ->columnSpanFull(),
 
-            Forms\Components\Textarea::make('description'),
+                Forms\Components\FileUpload::make('image')
+                    ->label('Service Image')
+                    ->image()
+                    ->directory('services')
+                    ->disk('public')
+                    ->imageEditor(),
 
-            Forms\Components\TextInput::make('price')
-                ->numeric()
-                ->required(),
-                TextInput::make('feature1')
-    ->label('Feature 1')
-    ->maxLength(255),
+                Forms\Components\Select::make('working_category')
+                    ->label('Working Category')
+                    ->options([
+                        'Hourly' => 'Hourly',
+                        'Daily' => 'Daily',
+                        'Weekly' => 'Weekly',
+                        'Monthly' => 'Monthly',
+                    ])
+                    ->searchable()
+                    ->required(),
 
-TextInput::make('feature2')
-    ->label('Feature 2')
-    ->maxLength(255),
+                Forms\Components\TextInput::make('working_time')
+                    ->label('Working Time')
+                    ->placeholder('Example: Minimum 5 Hours')
+                    ->required(),
 
-TextInput::make('feature3')
-    ->label('Feature 3')
-    ->maxLength(255),
+                Forms\Components\TextInput::make('price')
+                    ->label('Price')
+                    ->numeric()
+                    ->prefix('₹')
+                    ->required(),
 
-TextInput::make('feature4')
-    ->label('Feature 4')
-    ->maxLength(255),
+                Forms\Components\Toggle::make('status')
+                    ->label('Status')
+                    ->default(true)
+                    ->inline(false),
 
-            FileUpload::make('image')
-    ->image()
-    ->disk('public')
-    ->directory('services'),
-
-            Forms\Components\Toggle::make('status')
-                ->default(true),
 
         ]);
 }

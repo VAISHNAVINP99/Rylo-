@@ -17,7 +17,21 @@ use App\Http\Controllers\Api\StatController;
 use App\Http\Controllers\Api\CtaController;
 use App\Http\Controllers\Api\FooterController;
 use App\Http\Controllers\Api\NavbarController;
+use App\Http\Controllers\Api\BranchController;
+use App\Http\Controllers\Api\JobApplicationController;
 
+
+
+Route::apiResource('services', ServiceController::class);
+
+Route::get('/job-applications', [JobApplicationController::class, 'index']);
+
+Route::get('/job-applications/{id}', [JobApplicationController::class, 'show']);
+
+Route::post('/job-applications', [JobApplicationController::class, 'store']);
+
+Route::get('/branches', [BranchController::class, 'index']);
+Route::get('/branches/{id}', [BranchController::class, 'show']);
 
 
 Route::get('/pricing', [PricingController::class,'index']);
@@ -40,12 +54,7 @@ Route::get('/about', [AboutController::class, 'index']);
 
 Route::get('/terms-conditions', [TermsConditionController::class, 'index']);
 
-// Services
-Route::get('/services', [ServiceController::class, 'index']);
-Route::get('/services/{slug}', [ServiceController::class, 'show']);
-Route::post('/services', [ServiceController::class, 'store']);
-Route::put('/services/{id}', [ServiceController::class, 'update']);
-Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
+
 
 // Bookings
 Route::get('/bookings', [BookingController::class, 'index']);

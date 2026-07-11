@@ -19,47 +19,40 @@ class ServicesTable
         return $table
             
             ->columns([
-ImageColumn::make('image')
-    ->disk('public')
-    ->visibility('public')
-    ->height(60)
-    ->width(60),
 
-Tables\Columns\TextColumn::make('title')
-    ->searchable()
-    ->sortable(),
+  Tables\Columns\ImageColumn::make('image')
+                    ->label('Image')
+                    ->disk('public')
+                    ->square(),
 
-Tables\Columns\TextColumn::make('description')
-    ->limit(50)
-    ->tooltip(fn ($record) => $record->description)
-    ->wrap(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Service')
+                    ->searchable()
+                    ->sortable(),
 
-Tables\Columns\TextColumn::make('price')
-    ->money('INR')
-    ->sortable(),
+                Tables\Columns\TextColumn::make('working_category')
+                    ->label('Category')
+                    ->searchable()
+                    ->sortable(),
 
-Tables\Columns\TextColumn::make('feature1')
-    ->label('Feature 1')
-    ->placeholder('-')
-    ->toggleable(),
+                Tables\Columns\TextColumn::make('working_time')
+                    ->label('Working Time')
+                    ->searchable(),
 
-Tables\Columns\TextColumn::make('feature2')
-    ->label('Feature 2')
-    ->placeholder('-')
-    ->toggleable(),
+                Tables\Columns\TextColumn::make('price')
+                    ->label('Price')
+                    ->money('INR')
+                    ->sortable(),
 
-Tables\Columns\TextColumn::make('feature3')
-    ->label('Feature 3')
-    ->placeholder('-')
-    ->toggleable(),
+                Tables\Columns\IconColumn::make('status')
+                    ->label('Status')
+                    ->boolean(),
 
-Tables\Columns\TextColumn::make('feature4')
-    ->label('Feature 4')
-    ->placeholder('-')
-    ->toggleable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Created')
+                    ->dateTime('d M Y')
+                    ->sortable(),
 
-Tables\Columns\IconColumn::make('status')
-    ->boolean(),
 
         ])
             ->filters([

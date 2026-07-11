@@ -8,44 +8,78 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
- public function index()
-{
-    return response()->json(
-        Service::where('status', 1)->get()
-    );
-}
-
-public function show($slug)
-{
-    $service = Service::where('slug', $slug)
-        ->where('status', 1)
-        ->firstOrFail();
-
-    return response()->json($service);
-}
-
-    public function store(Request $request)
+    // Get all active services
+    public function index()
     {
-        return response()->json(
-            Service::create($request->all())
-        );
+        $services = Service::where('status', true)
+            ->latest()
+            ->get();
+
+        return response()->json($services);
     }
 
-    public function update(Request $request, $id)
+    // Get single service
+    public function show($id)
     {
-        $service = Service::findOrFail($id);
-
-        $service->update($request->all());
+        $service = Service::where('status', true)
+            ->findOrFail($id);
 
         return response()->json($service);
     }
 
-    public function destroy($id)
+    // Store service
+    public function store(Request $request)
     {
-        Service::findOrFail($id)->delete();
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'working_category' => 'required|string|max:255',
+            'working_time' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'image' => 'nullable|string',
+            'status' => 'boolean',
+        ]);
+
+        $service = Service::create($validated);
 
         return response()->json([
-            'message' => 'Deleted Successfully'
+            'message' => 'Service created successfully.',
+            'data' => $service,
+        ], 201);
+    }
+
+    // Update service
+    public function update(Request $request, $id)
+    {
+        $service = Service::findOrFail($id);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'working_category' => 'required|string|max:255',
+            'working_time' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'image' => 'nullable|string',
+            'status' => 'boolean',
+        ]);
+
+        $service->update($validated);
+
+        return response()->json([
+            'message' => 'Service updated successfully.',
+            'data' => $service,
+        ]);
+    }
+
+    // Delete service
+    public function destroy($id)
+    {
+        $service = Service::findOrFail($id);
+
+        $service->delete();
+
+        return response()->json([
+            'message' => 'Service deleted successfully.',
         ]);
     }
 }
