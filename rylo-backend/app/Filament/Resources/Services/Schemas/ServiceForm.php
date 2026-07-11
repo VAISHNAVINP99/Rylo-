@@ -43,18 +43,12 @@ class ServiceForm
 
                 Forms\Components\Select::make('working_category')
                     ->label('Working Category')
-                    ->options([
-                        'Hourly' => 'Hourly',
-                        'Daily' => 'Daily',
-                        'Weekly' => 'Weekly',
-                        'Monthly' => 'Monthly',
-                    ])
                     ->searchable()
                     ->required(),
 
                 Forms\Components\TextInput::make('working_time')
                     ->label('Working Time')
-                    ->placeholder('Example: Minimum 5 Hours')
+                    ->placeholder('Example: Minimum 4 Hours')
                     ->required(),
 
                 Forms\Components\TextInput::make('price')

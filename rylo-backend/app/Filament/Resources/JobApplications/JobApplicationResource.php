@@ -50,7 +50,7 @@ class JobApplicationResource extends Resource
     {
         return [
             'index' => ListJobApplications::route('/'),
-           
+             'view' => Pages\ViewJobApplication::route('/{record}'),
             'edit' => EditJobApplication::route('/{record}/edit'),
         ];
     }
