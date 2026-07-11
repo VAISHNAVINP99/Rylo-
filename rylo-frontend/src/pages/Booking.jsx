@@ -308,11 +308,7 @@ setFormData((prev) => ({
                     required
                     className="w-full border rounded-lg p-3"
                   >
-                    <option value="">Select Duration</option>
-                    <option value="Hourly">Hourly</option>
-                    <option value="Daily">Daily</option>
-                    <option value="Weekly">Weekly</option>
-                    <option value="Monthly">Monthly</option>
+                   
                   </select>
                 </div>
 
