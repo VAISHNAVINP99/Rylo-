@@ -13,44 +13,38 @@ import {
 
 export default function Footer() {
   const [footer, setFooter] = useState(null);
+  const [branches, setBranches] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("https://api.rylosupport.in/api/footer")
-      .then((res) => setFooter(res.data))
-      .catch((err) => console.log(err));
-  }, []);
 
-  const formatUrl = (url) => {
-    if (!url) return "#";
 
-    url = url.trim();
+useEffect(() => {
+    fetchFooter();
+    fetchBranches();
+}, []);
 
-    if (
-      url.startsWith("http://") ||
-      url.startsWith("https://")
-    ) {
-      return url;
+const fetchFooter = async () => {
+    try {
+        const res = await axios.get(
+            "https://api.rylosupport.in/api/footer"
+        );
+
+        setFooter(res.data);
+    } catch (error) {
+        console.log(error);
     }
+};
 
-    if (/^\d+$/.test(url)) {
-      return `https://wa.me/${url}`;
+const fetchBranches = async () => {
+    try {
+        const res = await axios.get(
+            "https://api.rylosupport.in/api/branches"
+        );
+
+        setBranches(res.data);
+    } catch (error) {
+        console.log(error);
     }
-
-    if (url.includes("wa.me/")) {
-      return `https://${url}`;
-    }
-
-    if (url.includes("facebook.com")) {
-      return `https://${url}`;
-    }
-
-    if (url.includes("instagram.com")) {
-      return `https://${url}`;
-    }
-
-    return `https://${url}`;
-  };
+};
 
   if (!footer) {
     return (
@@ -61,9 +55,9 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gradient-to-r from-[#16003D] via-[#24005A] to-[#16003D] text-white">
+     <footer className="bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 text-white">
 
-      <div className="max-w-7xl mx-auto px-6 py-14">
+        <div className="max-w-7xl mx-auto px-6 py-14">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
 
@@ -201,56 +195,50 @@ export default function Footer() {
 
           </div>
 
-          {/* Follow */}
+          {/* Our Branches*/}
 
-          <div className="text-center lg:text-left">
+        <div>
 
-            <h3 className="text-xl font-semibold mb-6">
-              Follow Us
-            </h3>
+    <h3 className="text-xl font-semibold mb-6">
+        Our Branches
+    </h3>
 
-            <p className="text-gray-300 mb-6">
-              Stay connected with us through social media.
-            </p>
+    <div className="space-y-6">
 
-            <div className="flex justify-center lg:justify-start gap-4">
+        {branches.map((branch) => (
 
-              {footer.facebook && (
-                <a
-                  href={formatUrl(footer.facebook)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-purple-700 hover:bg-blue-600 transition duration-300 flex items-center justify-center"
-                >
-                  <FaFacebookF />
-                </a>
-              )}
+            <div
+                key={branch.id}
+                className="border-l-4 border-purple-600 pl-4"
+            >
 
-              {footer.instagram && (
-                <a
-                  href={formatUrl(footer.instagram)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-purple-700 hover:bg-pink-600 transition duration-300 flex items-center justify-center"
-                >
-                  <FaInstagram />
-                </a>
-              )}
+                <h4 className="font-semibold text-white text-lg">
+                    {branch.branch_name}
+                </h4>
 
-              {footer.whatsapp && (
-                <a
-                  href={formatUrl(footer.whatsapp)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-purple-700 hover:bg-green-600 transition duration-300 flex items-center justify-center"
-                >
-                  <FaWhatsapp />
-                </a>
-              )}
+                <p className="text-gray-300 mt-2 whitespace-pre-line">
+                    {branch.address}
+                </p>
+
+                {branch.phone && (
+                    <p className="text-gray-400 mt-2">
+                        📞 {branch.phone}
+                    </p>
+                )}
+
+                {branch.email && (
+                    <p className="text-gray-400">
+                        ✉️ {branch.email}
+                    </p>
+                )}
 
             </div>
 
-          </div>
+        ))}
+
+    </div>
+
+</div>
 
         </div>
 
