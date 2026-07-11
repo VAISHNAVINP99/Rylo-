@@ -25,7 +25,7 @@ useEffect(() => {
 const fetchFooter = async () => {
     try {
         const res = await axios.get(
-            "https://api.rylosupport.in/api/footer"
+            "https://api.rylosupport.in/api/footer-settings"
         );
 
         setFooter(res.data);

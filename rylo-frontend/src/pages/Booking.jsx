@@ -17,13 +17,14 @@ export default function Booking() {
 
   const [selectedService, setSelectedService] = useState(null);
 
- const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     customer_name: "",
     mobile: "",
     whatsapp: "",
     email: "",
 
     service_id: "",
+    title: "",
     working_category: "",
     working_time: "",
     price: "",
@@ -34,7 +35,6 @@ export default function Booking() {
     location: "",
     notes: "",
 });
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -54,6 +54,7 @@ export default function Booking() {
 setFormData((prev) => ({
     ...prev,
     service_id: response.data.id,
+    title: response.data.title,
     working_category: response.data.working_category,
     working_time: response.data.working_time,
     price: response.data.price,
@@ -81,18 +82,24 @@ setFormData((prev) => ({
 
       console.log(response.data);
 
-      setFormData({
-        customer_name: "",
-        mobile: "",
-        whatsapp: "",
-        email: "",
-        service_id: selectedService?.id || "",
-        date: "",
-        time: "",
-        duration: "",
-        location: "",
-        notes: "",
-      });
+    setFormData({
+    customer_name: "",
+    mobile: "",
+    whatsapp: "",
+    email: "",
+
+    service_id: selectedService?.id || "",
+    title: selectedService?.title || "",
+    working_category: selectedService?.working_category || "",
+    working_time: selectedService?.working_time || "",
+    price: selectedService?.price || "",
+
+    date: "",
+    time: "",
+    duration: "",
+    location: "",
+    notes: "",
+});
     } catch (error) {
       console.error(error);
 
@@ -214,47 +221,46 @@ setFormData((prev) => ({
                 </div>
 
 
-                <div>
-    <label className="font-semibold block mb-2">
-        Working Category
-    </label>
+{/* Working Category */}
+<div>
+  <label className="font-semibold block mb-2">
+    Working Category
+  </label>
 
-    <input
-        type="text"
-        value={selectedService?.working_category || ""}
-        readOnly
-        className="w-full border rounded-lg p-3 bg-gray-100"
-    />
+  <input
+    type="text"
+    value={formData.working_category || ""}
+    readOnly
+    className="w-full border rounded-lg p-3 bg-gray-100"
+  />
 </div>
 
+{/* Working Time */}
 <div>
-    <label className="font-semibold block mb-2">
-        Working Time
-    </label>
+  <label className="font-semibold block mb-2">
+    Working Time
+  </label>
 
-    <input
-        type="text"
-        value={selectedService?.working_time || ""}
-        readOnly
-        className="w-full border rounded-lg p-3 bg-gray-100"
-    />
+  <input
+    type="text"
+    value={formData.working_time || ""}
+    readOnly
+    className="w-full border rounded-lg p-3 bg-gray-100"
+  />
 </div>
 
+{/* Service Price */}
 <div>
-    <label className="font-semibold block mb-2">
-        Service Price
-    </label>
+  <label className="font-semibold block mb-2">
+    Service Price
+  </label>
 
-    <input
-        type="text"
-        value={
-            selectedService
-                ? `₹${selectedService.price}`
-                : ""
-        }
-        readOnly
-        className="w-full border rounded-lg p-3 bg-gray-100"
-    />
+  <input
+    type="text"
+    value={formData.price ? `₹${formData.price}` : ""}
+    readOnly
+    className="w-full border rounded-lg p-3 bg-gray-100"
+  />
 </div>
 
                 {/* Date */}
