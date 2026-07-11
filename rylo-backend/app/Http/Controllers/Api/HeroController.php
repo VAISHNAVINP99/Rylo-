@@ -9,7 +9,7 @@ class HeroController extends Controller
 {
     public function index()
 {
-    return Hero::where('status', true)
+    return HeroSection::where('status', true)
         ->orderBy('id')
         ->get();
 }

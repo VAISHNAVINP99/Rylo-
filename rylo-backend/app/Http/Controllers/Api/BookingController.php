@@ -4,77 +4,124 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingAdminMail;
+use App\Mail\BookingCustomerMail;
 
 class BookingController extends Controller
 {
-    public function index()
-    {
-        return response()->json(Booking::latest()->get());
-    }
-
+    /**
+     * Store Booking
+     */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
+
             'customer_name' => 'required|string|max:255',
             'mobile' => 'required|string|max:20',
-            'whatsapp' => 'required|string|max:20',
-            'email' => 'nullable|email|max:255',
+            'whatsapp' => 'nullable|string|max:20',
+            'email' => 'nullable|email',
+
             'service_id' => 'required|exists:services,id',
+
             'date' => 'required|date',
             'time' => 'required',
-            'duration' => 'required',
+            'duration' => 'required|string',
+
             'location' => 'required|string|max:255',
             'notes' => 'nullable|string',
+
         ]);
 
-        $booking = Booking::create($validated);
+        $service = Service::findOrFail($request->service_id);
+
+        $booking = Booking::create([
+
+            'customer_name' => $request->customer_name,
+            'mobile' => $request->mobile,
+            'whatsapp' => $request->whatsapp,
+            'email' => $request->email,
+
+            'service_id' => $service->id,
+            'working_category' => $service->working_category,
+            'working_time' => $service->working_time,
+            'price' => $service->price,
+
+            'date' => $request->date,
+            'time' => $request->time,
+            'duration' => $request->duration,
+
+            'location' => $request->location,
+            'notes' => $request->notes,
+
+            'status' => 'Pending',
+        ]);
+
+        Mail::to('vaishnavinp99@gmail.com')
+    ->send(new BookingAdminMail($booking));
+
+Mail::to($booking->email)
+    ->send(new BookingCustomerMail($booking));
 
         return response()->json([
             'success' => true,
             'message' => 'Booking submitted successfully.',
-            'data' => $booking,
+            'booking' => $booking
         ], 201);
     }
 
-    public function show($id)
+    /**
+     * List Bookings
+     */
+    public function index()
     {
-        return response()->json(Booking::findOrFail($id));
+        return Booking::with('service')
+            ->latest()
+            ->get();
     }
 
+    /**
+     * Show Booking
+     */
+    public function show($id)
+    {
+        return Booking::with('service')->findOrFail($id);
+    }
+
+    /**
+     * Update Booking Status
+     */
     public function update(Request $request, $id)
     {
         $booking = Booking::findOrFail($id);
 
-        $validated = $request->validate([
-            'customer_name' => 'sometimes|string|max:255',
-            'mobile' => 'sometimes|string|max:20',
-            'whatsapp' => 'sometimes|string|max:20',
-            'email' => 'nullable|email|max:255',
-            'service_id' => 'sometimes|exists:services,id',
-            'date' => 'sometimes|date',
-            'time' => 'sometimes',
-            'duration' => 'sometimes',
-            'location' => 'sometimes|string|max:255',
-            'notes' => 'nullable|string',
-            'status' => 'sometimes|string',
+        $request->validate([
+            'status' => 'required|in:Pending,Confirmed,Completed,Cancelled'
         ]);
 
-        $booking->update($validated);
+        $booking->update([
+            'status' => $request->status
+        ]);
 
         return response()->json([
             'success' => true,
-            'data' => $booking,
+            'message' => 'Booking updated successfully.',
+            'booking' => $booking
         ]);
     }
 
+    /**
+     * Delete Booking
+     */
     public function destroy($id)
     {
         Booking::findOrFail($id)->delete();
 
         return response()->json([
             'success' => true,
-            'message' => 'Booking deleted successfully.',
+            'message' => 'Booking deleted successfully.'
         ]);
     }
 }

@@ -3,24 +3,35 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Booking extends Model
 {
-      protected $fillable = [
+    protected $fillable = [
         'customer_name',
         'mobile',
         'whatsapp',
         'email',
+
         'service_id',
+        'working_category',
+        'working_time',
+        'price',
+
         'date',
         'time',
-        'location',
         'duration',
+
+        'location',
         'notes',
+
         'status',
     ];
 
-    public function service()
+    /**
+     * A booking belongs to a service.
+     */
+    public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
     }
