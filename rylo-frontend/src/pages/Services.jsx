@@ -147,12 +147,9 @@ export default function Services() {
 
                                     
 
-                                        <Link
-                                        to="/book-now"
-                                        className="block text-center border-2 border-purple-700 text-purple-700 hover:bg-purple-700 hover:text-white py-3 rounded-xl font-semibold transition"
-                                    >
-                                        Book Now
-                                    </Link>
+                                       <Link to={`/booking/${service.id}`}>
+    Book Now
+</Link>
 
                                     </div>
 

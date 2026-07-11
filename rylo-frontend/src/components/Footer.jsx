@@ -107,18 +107,7 @@ const fetchBranches = async () => {
                 </Link>
               </li>
 
-              <li>
-                <Link to="/pricing" className="hover:text-purple-300 transition">
-                  Pricing
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/book-now" className="hover:text-purple-300 transition">
-                  Book Now
-                </Link>
-              </li>
-
+             
               <li>
                 <Link to="/contact" className="hover:text-purple-300 transition">
                   Contact

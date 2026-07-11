@@ -101,13 +101,7 @@ useEffect(() => {
             Services
           </Link>
 
-          <Link
-            to="/pricing"
-            onClick={closeMenu}
-            className="font-medium hover:text-purple-600"
-          >
-            Pricing
-          </Link>
+      
 
           <Link
             to="/contact"
@@ -117,13 +111,7 @@ useEffect(() => {
             Contact
           </Link>
 
-          <Link
-            to="/book-now"
-            onClick={closeMenu}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center py-3 rounded-xl font-semibold"
-          >
-            Book Now
-          </Link>
+       
         </div>
       </div>
     </nav>
