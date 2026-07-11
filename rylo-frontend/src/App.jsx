@@ -6,7 +6,7 @@ import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import Booking from "./pages/Booking";
  import Contact from "./pages/Contact";
- import ServiceDetails from "./pages/ServiceDetails";
+
  import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import JobApplication from "./pages/JobApplication";
@@ -27,9 +27,7 @@ function App() {
           <Route path="/job_opening" element={<JobApplication />} />
         <Route path="/book-now" element={<Booking />} />
         <Route path="/contact" element={<Contact />}  /> 
-        <Route
-  path="/service/:slug"
-  element={<ServiceDetails />}/>
+    
   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
        <Route
