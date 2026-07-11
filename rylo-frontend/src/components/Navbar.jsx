@@ -47,7 +47,7 @@ useEffect(() => {
 
           <Link to="/services">Services</Link>
 
-          <Link to="/pricing">Pricing</Link>
+        
             <Link to="/job_opening">Job Openings</Link>
 
           <Link to="/contact">Contact</Link>

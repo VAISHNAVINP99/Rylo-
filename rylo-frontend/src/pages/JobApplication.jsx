@@ -162,15 +162,12 @@ export default function JobApplication() {
 
                         </div>
 
-                        {success && (
-
-                            <div className="mb-6 bg-green-100 text-green-700 p-4 rounded-xl">
-
-                                {success}
-
-                            </div>
-
-                        )}
+                    {success && (
+    <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4">
+        <h3 className="font-bold">Application Submitted Successfully!</h3>
+        <p>{success}</p>
+    </div>
+)}
 
                      <form
     onSubmit={handleSubmit}

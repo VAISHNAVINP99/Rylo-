@@ -5,7 +5,7 @@ import WhyChoose from "../components/WhyChoose";
 import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonial";
 import CTA from "../components/CTA";
-import Services from "../components/Services"
+import Services from "../pages/Services";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 WhatsAppButton

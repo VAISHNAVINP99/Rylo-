@@ -148,11 +148,11 @@ export default function Services() {
                                     
 
                                         <Link
-                                            to={`/book-now/${service.id}`}
-                                            className="border border-purple-700 text-purple-700 text-center py-3 rounded-xl hover:bg-purple-50"
-                                        >
-                                            Book Now
-                                        </Link>
+                                        to="/book-now"
+                                        className="block text-center border-2 border-purple-700 text-purple-700 hover:bg-purple-700 hover:text-white py-3 rounded-xl font-semibold transition"
+                                    >
+                                        Book Now
+                                    </Link>
 
                                     </div>
 

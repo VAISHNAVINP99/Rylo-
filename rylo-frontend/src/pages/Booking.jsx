@@ -17,18 +17,23 @@ export default function Booking() {
 
   const [selectedService, setSelectedService] = useState(null);
 
-  const [formData, setFormData] = useState({
+ const [formData, setFormData] = useState({
     customer_name: "",
     mobile: "",
     whatsapp: "",
     email: "",
+
     service_id: "",
+    working_category: "",
+    working_time: "",
+    price: "",
+
     date: "",
     time: "",
     duration: "",
     location: "",
     notes: "",
-  });
+});
 
   const handleChange = (e) => {
     setFormData({
@@ -44,12 +49,15 @@ export default function Booking() {
           `https://api.rylosupport.in/api/services/${id}`
         );
 
-        setSelectedService(response.data);
+    setSelectedService(response.data);
 
-        setFormData((prev) => ({
-          ...prev,
-          service_id: response.data.id,
-        }));
+setFormData((prev) => ({
+    ...prev,
+    service_id: response.data.id,
+    working_category: response.data.working_category,
+    working_time: response.data.working_time,
+    price: response.data.price,
+}));
       } catch (error) {
         console.log(error);
       }
@@ -204,6 +212,50 @@ export default function Booking() {
                     className="w-full border rounded-lg p-3 bg-gray-100"
                   />
                 </div>
+
+
+                <div>
+    <label className="font-semibold block mb-2">
+        Working Category
+    </label>
+
+    <input
+        type="text"
+        value={selectedService?.working_category || ""}
+        readOnly
+        className="w-full border rounded-lg p-3 bg-gray-100"
+    />
+</div>
+
+<div>
+    <label className="font-semibold block mb-2">
+        Working Time
+    </label>
+
+    <input
+        type="text"
+        value={selectedService?.working_time || ""}
+        readOnly
+        className="w-full border rounded-lg p-3 bg-gray-100"
+    />
+</div>
+
+<div>
+    <label className="font-semibold block mb-2">
+        Service Price
+    </label>
+
+    <input
+        type="text"
+        value={
+            selectedService
+                ? `₹${selectedService.price}`
+                : ""
+        }
+        readOnly
+        className="w-full border rounded-lg p-3 bg-gray-100"
+    />
+</div>
 
                 {/* Date */}
                 <div>
