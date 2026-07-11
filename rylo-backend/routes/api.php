@@ -37,7 +37,7 @@ Route::get('/branches/{id}', [BranchController::class, 'show']);
 Route::get('/pricing', [PricingController::class,'index']);
 Route::get('/pricing/{id}', [PricingController::class,'show']);
 
-Route::get('/footer',[FooterController::class,'index']);
+Route::get('/footer-settings', [FooterController::class, 'index']);
 
 Route::get('/cta', [CtaController::class, 'index']);
 
