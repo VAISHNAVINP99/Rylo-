@@ -52,12 +52,7 @@ useEffect(() => {
 
           <Link to="/contact">Contact</Link>
 
-          <Link
-            to="/book-now"
-            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition"
-          >
-            Book Now
-          </Link>
+       
         </div>
 
         {/* Mobile Menu Button */}

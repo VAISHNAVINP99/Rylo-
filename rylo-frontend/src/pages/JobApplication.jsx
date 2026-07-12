@@ -143,7 +143,7 @@ export default function JobApplication() {
         <>
             <Navbar />
 
-            <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-16">
+            <section className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium">
 
                 <div className="max-w-4xl mx-auto px-5">
 
@@ -162,12 +162,7 @@ export default function JobApplication() {
 
                         </div>
 
-                    {success && (
-    <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4">
-        <h3 className="font-bold">Application Submitted Successfully!</h3>
-        <p>{success}</p>
-    </div>
-)}
+  
 
                      <form
     onSubmit={handleSubmit}
@@ -186,7 +181,7 @@ export default function JobApplication() {
         value={formData.name}
         onChange={handleChange}
         placeholder="Enter Full Name"
-        className="w-full border rounded-xl p-3 focus:ring-2 focus:ring-purple-600 outline-none"
+         className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
     />
 
     {errors.name && (
@@ -209,7 +204,7 @@ export default function JobApplication() {
         value={formData.phone}
         onChange={handleChange}
         placeholder="Enter Phone Number"
-        className="w-full border rounded-xl p-3 focus:ring-2 focus:ring-purple-600 outline-none"
+         className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
     />
 
     {errors.phone && (
@@ -232,7 +227,7 @@ export default function JobApplication() {
         value={formData.whatsapp}
         onChange={handleChange}
         placeholder="Enter WhatsApp Number"
-        className="w-full border rounded-xl p-3 focus:ring-2 focus:ring-purple-600 outline-none"
+         className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
     />
 </div>
 
@@ -249,7 +244,7 @@ export default function JobApplication() {
         value={formData.email}
         onChange={handleChange}
         placeholder="Enter Email"
-        className="w-full border rounded-xl p-3 focus:ring-2 focus:ring-purple-600 outline-none"
+         className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
     />
 </div>
 
@@ -266,7 +261,7 @@ export default function JobApplication() {
         value={formData.place}
         onChange={handleChange}
         placeholder="Enter Place"
-        className="w-full border rounded-xl p-3 focus:ring-2 focus:ring-purple-600 outline-none"
+         className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
     />
 
     {errors.place && (
@@ -289,7 +284,7 @@ export default function JobApplication() {
         value={formData.position}
         onChange={handleChange}
         placeholder="Eg: Driver, Housekeeping"
-        className="w-full border rounded-xl p-3 focus:ring-2 focus:ring-purple-600 outline-none"
+         className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
     />
 </div>
 
@@ -304,7 +299,7 @@ export default function JobApplication() {
         name="job_type"
         value={formData.job_type}
         onChange={handleChange}
-        className="w-full border rounded-xl p-3 focus:ring-2 focus:ring-purple-600 outline-none"
+         className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
     >
         <option value="">
             Select Job Type
@@ -363,7 +358,7 @@ export default function JobApplication() {
         value={formData.message}
         onChange={handleChange}
         placeholder="Tell us about yourself..."
-        className="w-full border rounded-xl p-3 focus:ring-2 focus:ring-purple-600 outline-none"
+         className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
     />
 
 </div>

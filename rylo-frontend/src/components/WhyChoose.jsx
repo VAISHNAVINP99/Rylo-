@@ -69,14 +69,6 @@ export default function WhyChoose() {
                             className="group bg-white/80 backdrop-blur-md rounded-3xl p-8 text-center shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 border border-purple-100 flex flex-col"
                         >
 
-                            {/* Icon */}
-
-                            <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-r from-purple-700 to-blue-700 flex items-center justify-center text-white text-3xl shadow-lg group-hover:rotate-6 group-hover:scale-110 transition duration-500">
-
-                                {iconMap[item.icon] || <FaAward />}
-
-                            </div>
-
                             {/* Title */}
 
                             <h3 className="mt-7 text-xl font-bold text-gray-800">

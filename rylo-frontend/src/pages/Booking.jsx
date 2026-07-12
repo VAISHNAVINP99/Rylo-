@@ -31,7 +31,6 @@ const [formData, setFormData] = useState({
 
     date: "",
     time: "",
-    duration: "",
     location: "",
     notes: "",
 });
@@ -96,7 +95,6 @@ setFormData((prev) => ({
 
     date: "",
     time: "",
-    duration: "",
     location: "",
     notes: "",
 });
@@ -124,7 +122,7 @@ setFormData((prev) => ({
       </section>
 
       {/* Booking Section */}
-      <section className="bg-gray-100 py-12">
+      <section className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium">
         <div className="max-w-7xl mx-auto px-4">
 
           <div className="grid lg:grid-cols-4 gap-8">
@@ -156,7 +154,7 @@ setFormData((prev) => ({
                     value={formData.customer_name}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded-lg p-3"
+                      className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
                   />
                 </div>
 
@@ -172,7 +170,7 @@ setFormData((prev) => ({
                     value={formData.mobile}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded-lg p-3"
+                      className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
                   />
                 </div>
 
@@ -187,7 +185,7 @@ setFormData((prev) => ({
                     name="whatsapp"
                     value={formData.whatsapp}
                     onChange={handleChange}
-                    className="w-full border rounded-lg p-3"
+                      className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
                   />
                 </div>
 
@@ -202,7 +200,7 @@ setFormData((prev) => ({
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full border rounded-lg p-3"
+                      className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
                   />
                 </div>
 
@@ -275,7 +273,7 @@ setFormData((prev) => ({
                     value={formData.date}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded-lg p-3"
+                      className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
                   />
                 </div>
 
@@ -291,27 +289,11 @@ setFormData((prev) => ({
                     value={formData.time}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded-lg p-3"
+                      className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
                   />
                 </div>
 
-                {/* Duration */}
-                <div>
-                  <label className="font-semibold block mb-2">
-                    Duration
-                  </label>
-
-                  <select
-                    name="duration"
-                    value={formData.duration}
-                    onChange={handleChange}
-                    required
-                    className="w-full border rounded-lg p-3"
-                  >
-                   
-                  </select>
-                </div>
-
+            
                 {/* Location */}
                 <div className="md:col-span-2">
                   <label className="font-semibold block mb-2">
@@ -324,7 +306,7 @@ setFormData((prev) => ({
                     value={formData.location}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded-lg p-3"
+                      className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
                   />
                 </div>
 
@@ -339,7 +321,7 @@ setFormData((prev) => ({
                     name="notes"
                     value={formData.notes}
                     onChange={handleChange}
-                    className="w-full border rounded-lg p-3"
+                      className="w-full border border-purple-200 rounded-lg p-3 bg-purple-50 text-gray-800 font-medium"
                   />
                 </div>
 
