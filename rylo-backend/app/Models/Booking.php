@@ -20,8 +20,6 @@ class Booking extends Model
 
         'date',
         'time',
-        'duration',
-
         'location',
         'notes',
 

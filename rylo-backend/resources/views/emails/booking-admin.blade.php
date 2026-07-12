@@ -26,7 +26,7 @@
 
     <p><strong>Duration:</strong> {{ $booking->duration }}</p>
 
-    <p><strong>Notes:</strong> {{ $booking->notes }}</p>
+  
 
 </body>
 

@@ -41,10 +41,11 @@ class ServiceForm
                     ->disk('public')
                     ->imageEditor(),
 
-                Forms\Components\Select::make('working_category')
-                    ->label('Working Category')
-                    ->searchable()
-                    ->required(),
+              TextInput::make('working_category')
+    ->label('Working Category')
+    ->required()
+    ->maxLength(255)
+    ->placeholder('Enter working category'),
 
                 Forms\Components\TextInput::make('working_time')
                     ->label('Working Time')

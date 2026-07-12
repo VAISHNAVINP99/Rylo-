@@ -16,10 +16,6 @@
 
 <p><strong>Phone:</strong> {{ $application->phone }}</p>
 
-<p><strong>Qualification:</strong> {{ $application->qualification }}</p>
-
-<p><strong>Experience:</strong> {{ $application->experience }}</p>
-
 <p><strong>Message:</strong> {{ $application->message ?? 'N/A' }}</p>
 
 <br>

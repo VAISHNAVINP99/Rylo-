@@ -19,9 +19,6 @@ class WhyChooseForm
 Textarea::make('description')
     ->required(),
 
-TextInput::make('icon')
-    ->helperText('Example: FaUserCheck'),
-
 Toggle::make('status')
     ->default(true)
             ]);

@@ -10,7 +10,6 @@ class WhyChoose extends Model
 
 'title',
 'description',
-'icon',
 'status'
 
 ];

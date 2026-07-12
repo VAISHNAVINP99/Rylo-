@@ -51,7 +51,6 @@ class BookingController extends Controller
 
             'date' => $request->date,
             'time' => $request->time,
-            'duration' => $request->duration,
 
             'location' => $request->location,
             'notes' => $request->notes,

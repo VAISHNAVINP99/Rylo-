@@ -29,10 +29,6 @@ class WhyChoosesTable
                     ->limit(60)
                     ->searchable(),
 
-                TextColumn::make('icon')
-                    ->label('Icon')
-                    ->searchable(),
-
                 IconColumn::make('status')
                     ->label('Status')
                     ->boolean(),

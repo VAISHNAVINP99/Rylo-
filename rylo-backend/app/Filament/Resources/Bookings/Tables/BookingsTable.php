@@ -34,11 +34,6 @@ class BookingsTable
                     ->sortable(),
                 TextColumn::make('location')
                     ->searchable(),
-                TextColumn::make('duration')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('status')
-                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
