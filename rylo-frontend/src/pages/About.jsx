@@ -6,46 +6,45 @@ import WhyChoose from "../components/WhyChoose";
 import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function About() {
-    const [about, setAbout] = useState(null);
+  
     const [animate, setAnimate] = useState(false);
+
+    const [about, setAbout] = useState({
+    hero_title: "",
+    hero_subtitle: "",
+    image: "",
+    company_name: "",
+    who_we_are_title: "",
+    description_one: "",
+    description_two: "",
+    mission: "",
+    vision: "",
+    cta_title: "",
+    cta_description: "",
+    cta_button: "",
+    whatsapp: "",
+});
 
     useEffect(() => {
         fetchAbout();
     }, []);
 
- const fetchAbout = async () => {
+const fetchAbout = async () => {
     try {
         const res = await axios.get(
             "https://api.rylosupport.in/api/about"
         );
 
-        const img = new Image();
-        img.src = `https://api.rylosupport.in/storage/${res.data.about.image}`;
+        setAbout(res.data.about);
 
-        img.onload = () => {
-            setAbout(res.data.about);
-
-            setTimeout(() => {
-                setAnimate(true);
-            }, 100);
-        };
-
-        img.onerror = () => {
-            setAbout(res.data.about);
+        setTimeout(() => {
             setAnimate(true);
-        };
+        }, 100);
 
     } catch (error) {
         console.log(error);
     }
 };
-    if (!about) {
-        return (
-            <div className="py-40 text-center text-2xl font-semibold">
-                Loading...
-            </div>
-        );
-    }
 
     return (
         <>
@@ -83,6 +82,7 @@ export default function About() {
 >
     <div className="absolute -top-5 -left-5 w-full h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl"></div>
 
+   {about.image && (
     <img
         src={`https://api.rylosupport.in/storage/${about.image}`}
         alt={about.company_name}
@@ -90,6 +90,7 @@ export default function About() {
         decoding="async"
         className="relative rounded-3xl shadow-2xl w-full object-cover z-10"
     />
+)}
 </div>
 
                         {/* Content */}

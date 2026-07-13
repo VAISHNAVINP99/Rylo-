@@ -198,7 +198,7 @@ const fetchBranches = async () => {
 
             <div
                 key={branch.id}
-                className="border-l-4 border-purple-600 pl-4"
+                
             >
 
                 <h4 className="font-semibold text-white text-lg">

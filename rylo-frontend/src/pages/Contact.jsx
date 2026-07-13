@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
+
 
 import {
   FaPhoneAlt,
@@ -21,6 +22,23 @@ export default function Contact() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [footerSettings, setFooterSettings] = useState(null);
+
+  useEffect(() => {
+  fetchFooterSettings();
+}, []);
+
+const fetchFooterSettings = async () => {
+  try {
+    const res = await axios.get(
+      "https://api.rylosupport.in/api/footer-settings"
+    );
+
+    setFooterSettings(res.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   const handleChange = (e) => {
     setFormData({
@@ -94,10 +112,10 @@ export default function Contact() {
                   <div>
                     <h4 className="font-semibold">Phone</h4>
                     <a
-                      href="tel:+917994573013"
+                      href={`tel:${footerSettings?.phone}`}
                       className="text-gray-600"
                     >
-                      +91 79945 73013
+                     {footerSettings?.phone}
                     </a>
                   </div>
                 </div>
@@ -109,7 +127,7 @@ export default function Contact() {
                     <h4 className="font-semibold">WhatsApp</h4>
 
                     <a
-                      href="https://wa.me/917994573013"
+                      href={`https://wa.me/${footerSettings?.whatsapp}`}
                       target="_blank"
                       rel="noreferrer"
                       className="text-green-600 font-medium"
@@ -126,10 +144,10 @@ export default function Contact() {
                     <h4 className="font-semibold">Email</h4>
 
                     <a
-                      href="mailto:rylosupportservices@gmail.com"
+                      href={`mailto:${footerSettings?.email}`}
                       className="text-gray-600"
                     >
-                      rylosupportservices@gmail.com
+                     {footerSettings?.email}
                     </a>
                   </div>
                 </div>
@@ -140,7 +158,7 @@ export default function Contact() {
                   <div>
                     <h4 className="font-semibold">Location</h4>
                     <p className="text-gray-600">
-                      Kozhikode, Kerala
+                        {footerSettings?.address}
                     </p>
                   </div>
                 </div>
@@ -228,15 +246,17 @@ export default function Contact() {
 
           <div className="rounded-3xl overflow-hidden shadow-xl h-[350px] md:h-[450px]">
 
-            <iframe
-              title="Kozhikode Map"
-              src="https://maps.google.com/maps?q=Kozhikode&t=&z=13&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-            ></iframe>
+           <iframe
+  title="Location Map"
+  src={`https://maps.google.com/maps?q=${encodeURIComponent(
+    footerSettings?.address || ""
+  )}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+  width="100%"
+  height="100%"
+  style={{ border: 0 }}
+  allowFullScreen
+  loading="lazy"
+></iframe>
 
           </div>
 
@@ -258,7 +278,7 @@ export default function Contact() {
             </p>
 
             <a
-              href="https://wa.me/917994573013"
+             href={`https://wa.me/${footerSettings?.whatsapp}`}
               target="_blank"
               rel="noreferrer"
               className="inline-block mt-8 bg-white text-purple-700 px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold hover:bg-gray-100 transition"
