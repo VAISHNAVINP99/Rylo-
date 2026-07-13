@@ -64,11 +64,12 @@ class BookingController extends Controller
 Mail::to($booking->email)
     ->send(new BookingCustomerMail($booking));
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Booking submitted successfully.',
-            'booking' => $booking
-        ], 201);
+      return response()->json([
+    'success' => true,
+    'message' => 'Booking submitted successfully.',
+    'booking_id' => $booking->id,
+    'booking' => $booking
+],201);
     }
 
     /**

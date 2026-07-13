@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\FooterController;
 use App\Http\Controllers\Api\NavbarController;
 use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\JobApplicationController;
+use App\Http\Controllers\Api\PaymentController;
 
 
 
@@ -80,4 +81,6 @@ Route::get(
 Route::get('/privacy-policy', [PrivacyPolicyController::class,'index']);
 
 Route::get('/navbar', [NavbarController::class, 'index']);
+
+Route::get('/payment-setting', [PaymentController::class, 'index']);
 
