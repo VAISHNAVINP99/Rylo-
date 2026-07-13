@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
@@ -14,7 +13,7 @@ import {
 
 export default function Booking() {
   const { id } = useParams();
-
+const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState(null);
 
 const [formData, setFormData] = useState({
@@ -68,46 +67,29 @@ setFormData((prev) => ({
     }
   }, [id]);
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://api.rylosupport.in/api/bookings",
-        formData
-      );
+        const response = await axios.post(
+            "https://api.rylosupport.in/api/bookings",
+            formData
+        );
 
-      alert("Booking Submitted Successfully");
+        console.log(response.data);
 
-      console.log(response.data);
+        navigate(`/payment/${response.data.booking_id}`);
 
-    setFormData({
-    customer_name: "",
-    mobile: "",
-    whatsapp: "",
-    email: "",
-
-    service_id: selectedService?.id || "",
-    title: selectedService?.title || "",
-    working_category: selectedService?.working_category || "",
-    working_time: selectedService?.working_time || "",
-    price: selectedService?.price || "",
-
-    date: "",
-    time: "",
-    location: "",
-    notes: "",
-});
     } catch (error) {
-      console.error(error);
+        console.error(error);
 
-      if (error.response?.data?.errors) {
-        alert(Object.values(error.response.data.errors).join("\n"));
-      } else {
-        alert("Booking Failed");
-      }
+        if (error.response?.data?.errors) {
+            alert(Object.values(error.response.data.errors).join("\n"));
+        } else {
+            alert("Booking Failed");
+        }
     }
-  };
+};
 
   return (
     <>

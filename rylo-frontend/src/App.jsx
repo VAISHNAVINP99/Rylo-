@@ -10,6 +10,7 @@ import Booking from "./pages/Booking";
  import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import JobApplication from "./pages/JobApplication";
+import Payment from "./pages/Payment";
 
 
 
@@ -35,6 +36,8 @@ function App() {
   path="/terms-and-conditions"
   element={<TermsConditions />}
 />
+
+<Route path="/payment/:id" element={<Payment />} />
 
       </Routes>
     </BrowserRouter>
