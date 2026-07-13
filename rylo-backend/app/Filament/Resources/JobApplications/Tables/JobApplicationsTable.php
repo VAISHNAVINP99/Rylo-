@@ -101,7 +101,7 @@ class JobApplicationsTable
             ])
 
             ->recordActions([
-                ViewAction::make(),
+               
                 EditAction::make(),
                 DeleteAction::make(),
             ])

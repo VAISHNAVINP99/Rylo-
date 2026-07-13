@@ -15,8 +15,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
-use Filament\Infolists\Infolist;
-use App\Filament\Resources\JobApplications\Schemas\JobApplicationInfolist;
+
 
 class JobApplicationResource extends Resource
 {
@@ -42,10 +41,7 @@ class JobApplicationResource extends Resource
         return JobApplicationsTable::configure($table);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
-{
-    return JobApplicationInfolist::configure($infolist);
-}
+
 
     public static function getRelations(): array
     {
