@@ -174,7 +174,7 @@ const handleSubmit = async (e) => {
                 {/* Email */}
                 <div>
                   <label className="font-semibold block mb-2">
-                    Email (Optional)
+                    Email 
                   </label>
 
                   <input
