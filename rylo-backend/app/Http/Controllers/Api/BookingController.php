@@ -28,7 +28,7 @@ class BookingController extends Controller
 
             'date' => 'required|date',
             'time' => 'required',
-            'duration' => 'required|string',
+           
 
             'location' => 'required|string|max:255',
             'notes' => 'nullable|string',
