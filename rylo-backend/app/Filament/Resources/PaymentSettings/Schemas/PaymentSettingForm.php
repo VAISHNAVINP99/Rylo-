@@ -21,10 +21,11 @@ class PaymentSettingForm
             TextInput::make('upi_id')
                 ->required(),
 
-            FileUpload::make('qr_code')
-                ->directory('payment')
-                ->image()
-                ->required(),
+           FileUpload::make('qr_code')
+    ->disk('public')
+    ->directory('payment')
+    ->image()
+    ->required(),
 
             Toggle::make('status')
                 ->default(true)

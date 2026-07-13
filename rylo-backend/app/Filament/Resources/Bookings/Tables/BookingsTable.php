@@ -7,6 +7,8 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+   use Filament\Actions\Action;
+use Filament\Forms\Components\Select;
 
 class BookingsTable
 {
@@ -42,6 +44,28 @@ class BookingsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
+Action::make('changeStatus')
+    ->label('Change Status')
+    ->icon('heroicon-o-pencil-square')
+    ->form([
+        Select::make('status')
+            ->options([
+                'Pending' => 'Pending',
+                'Confirmed' => 'Confirmed',
+                'Completed' => 'Completed',
+                'Cancelled' => 'Cancelled',
+            ])
+            ->required(),
+    ])
+    ->fillForm(fn ($record) => [
+        'status' => $record->status,
+    ])
+    ->action(function ($record, array $data) {
+        $record->update([
+            'status' => $data['status'],
+        ]);
+    }),
             ])
             ->filters([
                 //
