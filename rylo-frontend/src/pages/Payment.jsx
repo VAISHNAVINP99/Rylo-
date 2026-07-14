@@ -80,12 +80,11 @@ export default function Payment() {
 
                     <div className="flex justify-center">
 
-                        <img
-                            src={`https://api.rylosupport.in/storage/${payment.qr_code}`}
-                            alt="QR Code"
-                            className="w-72 h-72 object-contain border-4 border-purple-100 rounded-2xl shadow"
-                        />
-
+                     <img
+    src={payment.qr_code}
+    alt="QR Code"
+    className="w-72 h-72 object-contain border-4 border-purple-100 rounded-2xl shadow"
+/>
                     </div>
 
                     <h2 className="text-center mt-6 text-2xl font-bold text-gray-800">
