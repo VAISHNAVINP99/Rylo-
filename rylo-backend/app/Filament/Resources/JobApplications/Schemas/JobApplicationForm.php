@@ -38,12 +38,14 @@ class JobApplicationForm
     ->openable()
     ->dehydrated(fn ($state) => filled($state)),
 
-                Select::make('status')
-                    ->options([
-                        'Pending' => 'Pending',
-                        'Shortlisted' => 'Shortlisted',
-                        'Rejected' => 'Rejected',
-                    ]),
+              Select::make('status')
+    ->options([
+        'Pending' => 'Pending',
+        'Reviewed' => 'Reviewed',
+        'Selected' => 'Selected',
+        'Rejected' => 'Rejected',
+    ])
+    ->required(),
             ])
             ->columns(2);
     }
