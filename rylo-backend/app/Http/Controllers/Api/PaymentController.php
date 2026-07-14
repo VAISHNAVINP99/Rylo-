@@ -9,6 +9,18 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        return PaymentSetting::where('status', true)->first();
+        $payment = PaymentSetting::where('status', true)->first();
+
+        if (!$payment) {
+            return response()->json([
+                'message' => 'Payment setting not found'
+            ], 404);
+        }
+
+        if ($payment->qr_code) {
+            $payment->qr_code = asset('storage/' . $payment->qr_code);
+        }
+
+        return response()->json($payment);
     }
 }

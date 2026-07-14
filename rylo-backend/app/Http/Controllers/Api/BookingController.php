@@ -112,6 +112,14 @@ Mail::to($booking->email)
         ]);
     }
 
+public function payment(Booking $booking)
+{
+    return response()->json([
+        'success' => true,
+        'message' => 'Payment request received. We will verify your payment shortly.',
+    ]);
+}
+
     /**
      * Delete Booking
      */

@@ -7,7 +7,7 @@ use App\Filament\Resources\JobApplications\Pages\EditJobApplication;
 use App\Filament\Resources\JobApplications\Pages\ListJobApplications;
 use App\Filament\Resources\JobApplications\Schemas\JobApplicationForm;
 use App\Filament\Resources\JobApplications\Tables\JobApplicationsTable;
-use App\Filament\Resources\JobApplications\Pages\ViewJobApplication;
+
 use App\Models\JobApplication;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -54,7 +54,7 @@ class JobApplicationResource extends Resource
     {
         return [
             'index' => ListJobApplications::route('/'),
-             'view' => ViewJobApplication::route('/{record}'),
+           
             'edit' => EditJobApplication::route('/{record}/edit'),
         ];
     }

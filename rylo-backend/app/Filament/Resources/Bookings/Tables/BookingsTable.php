@@ -45,6 +45,14 @@ class BookingsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
+
+  
+            ])
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                EditAction::make(),
 Action::make('changeStatus')
     ->label('Change Status')
     ->icon('heroicon-o-pencil-square')
@@ -65,13 +73,9 @@ Action::make('changeStatus')
         $record->update([
             'status' => $data['status'],
         ]);
-    }),
-            ])
-            ->filters([
-                //
-            ])
-            ->recordActions([
-                EditAction::make(),
+
+          }),
+
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -6,11 +6,9 @@ use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ContactEnquiryController;
 use App\Http\Controllers\Api\ReviewController;
-use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\PrivacyPolicyController;
 use App\Http\Controllers\Api\TermsConditionController;
 use App\Http\Controllers\Api\AboutController;
-use App\Http\Controllers\Api\PricingController;
 use App\Http\Controllers\Api\HeroController;
 use App\Http\Controllers\Api\WhyChooseController;
 use App\Http\Controllers\Api\StatController;
@@ -35,8 +33,7 @@ Route::get('/branches', [BranchController::class, 'index']);
 Route::get('/branches/{id}', [BranchController::class, 'show']);
 
 
-Route::get('/pricing', [PricingController::class,'index']);
-Route::get('/pricing/{id}', [PricingController::class,'show']);
+
 
 Route::get('/footer-settings', [FooterController::class, 'index']);
 
@@ -49,7 +46,7 @@ Route::get('/why-choose', [WhyChooseController::class, 'index']);
 
 Route::get('/hero',[HeroController::class,'index']);
 
-Route::get('/pricing', [PricingController::class,'index']);
+
 
 Route::get('/about', [AboutController::class, 'index']);
 
@@ -63,6 +60,8 @@ Route::get('/bookings/{id}', [BookingController::class, 'show']);
 Route::post('/bookings', [BookingController::class, 'store']);
 Route::put('/bookings/{id}', [BookingController::class, 'update']);
 Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
+
+Route::post('/bookings/{booking}/payment', [BookingController::class, 'payment']);
 
 Route::apiResource(
     'contact-enquiries',
