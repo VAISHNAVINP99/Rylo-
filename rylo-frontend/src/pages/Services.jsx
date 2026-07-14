@@ -98,6 +98,7 @@ export default function Services() {
                         {services.map((service) => (
                             <div
                                 key={service.id}
+                                 data-testid="service-card"
                                 className={`bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-700 ${
                                     animate
                                         ? "opacity-100 translate-y-0"
@@ -108,6 +109,7 @@ export default function Services() {
                                 }}
                             >
                                 <img
+                                data-testid="service-image"
                                     src={`https://api.rylosupport.in/storage/${service.image}`}
                                     alt={service.title}
                                     className="w-full h-56 object-cover"
@@ -149,6 +151,7 @@ export default function Services() {
 
       <Link
   to={`/booking/${service.id}`}
+    data-testid="book-now"
   className="inline-block bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-semibold transition duration-300"
 >
   Book Now

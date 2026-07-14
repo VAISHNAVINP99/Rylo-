@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import WhatsAppButton from "../components/WhatsAppButton";
+
 
 import {
   FaFileContract,
@@ -203,7 +203,7 @@ export default function TermsConditions() {
       </section>
 
       <Footer />
-      <WhatsAppButton/>
+    
     </>
   );
 }

@@ -80,15 +80,20 @@ const handleSubmit = async (e) => {
 
         navigate(`/payment/${response.data.booking_id}`);
 
-    } catch (error) {
-        console.error(error);
+  } catch (error) {
 
-        if (error.response?.data?.errors) {
-            alert(Object.values(error.response.data.errors).join("\n"));
-        } else {
-            alert("Booking Failed");
-        }
+    console.log(error.response);
+
+    if (error.response) {
+        console.log(error.response.data);
     }
+
+    if (error.response?.data?.errors) {
+        alert(JSON.stringify(error.response.data.errors, null, 2));
+    } else {
+        alert("Booking Failed");
+    }
+}
 };
 
   return (

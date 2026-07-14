@@ -1,163 +1,194 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhyChoose from "../components/WhyChoose";
 import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function About() {
-  
+
     const [animate, setAnimate] = useState(false);
 
     const [about, setAbout] = useState({
-    hero_title: "",
-    hero_subtitle: "",
-    image: "",
-    company_name: "",
-    who_we_are_title: "",
-    description_one: "",
-    description_two: "",
-    mission: "",
-    vision: "",
-    cta_title: "",
-    cta_description: "",
-    cta_button: "",
-    whatsapp: "",
-});
+        hero_title: "",
+        hero_subtitle: "",
+        image: "",
+        company_name: "",
+        who_we_are_title: "",
+        description_one: "",
+        description_two: "",
+        mission: "",
+        vision: "",
+        cta_title: "",
+        cta_description: "",
+        cta_button: "",
+        whatsapp: "",
+    });
 
     useEffect(() => {
         fetchAbout();
     }, []);
 
-const fetchAbout = async () => {
-    try {
-        const res = await axios.get(
-            "https://api.rylosupport.in/api/about"
-        );
+    const fetchAbout = async () => {
+        try {
 
-        setAbout(res.data.about);
+            const res = await axios.get(
+                "https://api.rylosupport.in/api/about"
+            );
 
-        setTimeout(() => {
-            setAnimate(true);
-        }, 100);
+            setAbout(res.data.about);
 
-    } catch (error) {
-        console.log(error);
-    }
-};
+            setTimeout(() => {
+                setAnimate(true);
+            }, 100);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
-        <>
+        <div className="overflow-x-hidden bg-white">
 
-        <Navbar />
+            <Navbar />
+
             {/* Hero */}
-            <section className="bg-gradient-to-r from-purple-800 via-purple-700 to-blue-700 text-white py-24">
-                <div className="max-w-7xl mx-auto px-6 text-center">
 
-                    <h1 className="text-4xl md:text-6xl font-extrabold">
+            <section className="bg-gradient-to-r from-purple-800 via-purple-700 to-blue-700 text-white py-16 md:py-24">
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
+
                         {about.hero_title}
+
                     </h1>
 
-                    <p className="mt-6 text-lg text-purple-100 max-w-3xl mx-auto leading-8">
+                    <p className="mt-6 text-base sm:text-lg text-purple-100 max-w-3xl mx-auto leading-8">
+
                         {about.hero_subtitle}
+
                     </p>
 
                 </div>
+
             </section>
 
             {/* About */}
-            <section className="py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-6">
 
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <section className="py-16 md:py-24 bg-white">
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
                         {/* Image */}
 
-                    <div
-    className={`relative transition-all duration-1000 ease-out ${
-        animate
-            ? "translate-x-0 opacity-100"
-            : "-translate-x-24 opacity-0"
-    }`}
->
-    <div className="absolute -top-5 -left-5 w-full h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl"></div>
+                        <div
+                            className={`relative transition-all duration-1000 ease-out ${
+                                animate
+                                    ? "translate-x-0 opacity-100"
+                                    : "-translate-x-24 opacity-0"
+                            }`}
+                        >
 
-   {about.image && (
-    <img
-        src={`https://api.rylosupport.in/storage/${about.image}`}
-        alt={about.company_name}
-        loading="eager"
-        decoding="async"
-        className="relative rounded-3xl shadow-2xl w-full object-cover z-10"
-    />
-)}
-</div>
+                            <div className="absolute inset-0 md:-top-5 md:-left-5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl"></div>
+
+                            {about.image && (
+
+                                <img
+                                    src={`https://api.rylosupport.in/storage/${about.image}`}
+                                    alt={about.company_name}
+                                    loading="eager"
+                                    decoding="async"
+                                    className="relative z-10 w-full max-w-full rounded-3xl shadow-2xl object-cover"
+                                />
+
+                            )}
+
+                        </div>
 
                         {/* Content */}
 
-                     <div
-    className={`transition-all duration-1000 delay-200 ease-out ${
-        animate
-            ? "translate-x-0 opacity-100"
-            : "translate-x-24 opacity-0"
-    }`}
->
-    <span className="inline-block bg-purple-100 text-purple-700 px-5 py-2 rounded-full font-semibold uppercase">
-        {about.who_we_are_title}
-    </span>
+                        <div
+                            className={`transition-all duration-1000 delay-200 ease-out ${
+                                animate
+                                    ? "translate-x-0 opacity-100"
+                                    : "translate-x-24 opacity-0"
+                            }`}
+                        >
 
-    <h2 className="mt-6 text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-700 bg-clip-text text-transparent">
-        {about.company_name}
-    </h2>
+                            <span className="inline-block bg-purple-100 text-purple-700 px-5 py-2 rounded-full font-semibold uppercase text-sm">
 
-    <div
-        className="mt-8 text-gray-600 leading-8"
-        dangerouslySetInnerHTML={{
-            __html: about.description_one,
-        }}
-    />
+                                {about.who_we_are_title}
 
-    <div
-        className="mt-6 text-gray-600 leading-8"
-        dangerouslySetInnerHTML={{
-            __html: about.description_two,
-        }}
-    />
-</div>
+                            </span>
+
+                            <h2 className="mt-6 text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-700 bg-clip-text text-transparent leading-tight">
+
+                                {about.company_name}
+
+                            </h2>
+
+                            <div
+                                className="mt-8 text-gray-600 leading-8 break-words"
+                                dangerouslySetInnerHTML={{
+                                    __html: about.description_one,
+                                }}
+                            />
+
+                            <div
+                                className="mt-6 text-gray-600 leading-8 break-words"
+                                dangerouslySetInnerHTML={{
+                                    __html: about.description_two,
+                                }}
+                            />
+
+                        </div>
 
                     </div>
 
                 </div>
+
             </section>
 
-            {/* Mission & Vision */}
+                        {/* Mission & Vision */}
 
-            <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+            <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
 
-                <div className="max-w-7xl mx-auto px-6">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     <div className="text-center">
 
-                        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-700 bg-clip-text text-transparent">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-700 bg-clip-text text-transparent">
+
                             Mission & Vision
+
                         </h2>
 
-                        <p className="mt-5 text-gray-600">
+                        <p className="mt-5 text-gray-600 text-base sm:text-lg">
+
                             Our purpose and future direction.
+
                         </p>
 
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-10 mt-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mt-14 md:mt-16">
 
-                        <div className="bg-white rounded-3xl shadow-xl p-10 hover:-translate-y-2 transition duration-300">
+                        {/* Mission */}
 
-                            <h3 className="text-3xl font-bold text-purple-700 mb-6">
+                        <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 md:p-10 hover:-translate-y-2 transition duration-300">
+
+                            <h3 className="text-2xl md:text-3xl font-bold text-purple-700 mb-6">
+
                                 Our Mission
+
                             </h3>
 
                             <div
-                                className="leading-8 text-gray-600"
+                                className="leading-8 text-gray-600 break-words"
                                 dangerouslySetInnerHTML={{
                                     __html: about.mission,
                                 }}
@@ -165,14 +196,18 @@ const fetchAbout = async () => {
 
                         </div>
 
-                        <div className="bg-white rounded-3xl shadow-xl p-10 hover:-translate-y-2 transition duration-300">
+                        {/* Vision */}
 
-                            <h3 className="text-3xl font-bold text-blue-700 mb-6">
+                        <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 md:p-10 hover:-translate-y-2 transition duration-300">
+
+                            <h3 className="text-2xl md:text-3xl font-bold text-blue-700 mb-6">
+
                                 Our Vision
+
                             </h3>
 
                             <div
-                                className="leading-8 text-gray-600"
+                                className="leading-8 text-gray-600 break-words"
                                 dangerouslySetInnerHTML={{
                                     __html: about.vision,
                                 }}
@@ -192,27 +227,33 @@ const fetchAbout = async () => {
 
             {/* CTA */}
 
-            <section className="py-24">
+            <section className="py-16 md:py-24">
 
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    <div className="rounded-3xl bg-gradient-to-r from-purple-700 via-purple-800 to-blue-700 text-white p-12 md:p-16 text-center shadow-2xl">
+                    <div className="rounded-3xl bg-gradient-to-r from-purple-700 via-purple-800 to-blue-700 text-white p-6 sm:p-8 md:p-16 text-center shadow-2xl">
 
-                        <h2 className="text-3xl md:text-5xl font-bold">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight">
+
                             {about.cta_title}
+
                         </h2>
 
-                        <p className="mt-6 text-lg leading-8 max-w-3xl mx-auto text-purple-100">
+                        <p className="mt-6 text-base sm:text-lg leading-8 max-w-3xl mx-auto text-purple-100">
+
                             {about.cta_description}
+
                         </p>
 
                         <a
                             href={`https://wa.me/${about.whatsapp}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-block mt-10 bg-white text-purple-700 px-10 py-4 rounded-xl font-bold hover:scale-105 transition duration-300 shadow-lg"
+                            className="inline-block w-full sm:w-auto mt-8 md:mt-10 bg-white text-purple-700 px-8 sm:px-10 py-4 rounded-xl font-bold hover:scale-105 transition duration-300 shadow-lg"
                         >
+
                             {about.cta_button}
+
                         </a>
 
                     </div>
@@ -222,7 +263,9 @@ const fetchAbout = async () => {
             </section>
 
             <Footer />
+
             <WhatsAppButton />
-        </>
+
+        </div>
     );
 }
