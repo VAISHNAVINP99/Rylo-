@@ -30,8 +30,13 @@ class JobApplicationForm
                 Textarea::make('message')
                     ->columnSpanFull(),
 
-                FileUpload::make('resume')
-                    ->directory('resumes'),
+             FileUpload::make('resume')
+    ->disk('public')
+    ->directory('resumes')
+    ->preserveFilenames()
+    ->downloadable()
+    ->openable()
+    ->dehydrated(fn ($state) => filled($state)),
 
                 Select::make('status')
                     ->options([

@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Bookings\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
    use Filament\Actions\Action;
@@ -36,6 +35,16 @@ class BookingsTable
                     ->sortable(),
                 TextColumn::make('location')
                     ->searchable(),
+                    
+                      TextColumn::make('status')
+            ->badge()
+            ->color(fn (string $state) => match ($state) {
+                'Pending' => 'warning',
+                'Confirmed' => 'info',
+                'Completed' => 'success',
+                'Cancelled' => 'danger',
+                default => 'gray',
+            }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -52,7 +61,7 @@ class BookingsTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+               
 Action::make('changeStatus')
     ->label('Change Status')
     ->icon('heroicon-o-pencil-square')
