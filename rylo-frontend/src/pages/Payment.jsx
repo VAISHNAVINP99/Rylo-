@@ -15,6 +15,8 @@ export default function Payment() {
 
     const [payment, setPayment] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [utrNumber, setUtrNumber] = useState("");
+const [proof, setProof] = useState(null);
 
     useEffect(() => {
         axios
@@ -27,36 +29,52 @@ export default function Payment() {
         alert("UPI ID copied.");
     };
 
-    const handlePaid = async () => {
+const handleSubmit = async () => {
 
-        try {
-
-            setLoading(true);
-
-            await axios.post(
-                `https://api.rylosupport.in/api/bookings/${id}/payment`
-            );
-
-            alert("Payment submitted successfully.");
-
-            navigate("/");
-
-        } catch {
-
-            alert("Unable to submit payment.");
-
-        }
-
-        setLoading(false);
-    };
-
-    if (!payment) {
-        return (
-            <div className="min-h-screen flex items-center justify-center text-lg">
-                Loading...
-            </div>
-        );
+    if (!utrNumber) {
+        alert("Please enter UTR Number.");
+        return;
     }
+
+    if (!proof) {
+        alert("Please upload payment screenshot.");
+        return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("utr_number", utrNumber);
+    formData.append("payment_proof", proof);
+
+    try {
+
+        setLoading(true);
+
+        await axios.post(
+            `https://api.rylosupport.in/api/bookings/${id}/payment`,
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            }
+        );
+
+        alert("Payment proof submitted successfully. Our team will verify your payment.");
+
+        navigate("/");
+
+    } catch (error) {
+
+        alert("Failed to submit payment proof.");
+
+    }
+
+    setLoading(false);
+
+};
+
+   
 
     return (
 
@@ -69,10 +87,6 @@ export default function Payment() {
                     <h1 className="text-3xl font-bold">
                         Complete Your Payment
                     </h1>
-
-                    <p className="mt-2 text-purple-100">
-                        Booking ID : #{id}
-                    </p>
 
                 </div>
 
@@ -122,23 +136,47 @@ export default function Payment() {
 
                     </div>
 
-                    <button
-                        onClick={handlePaid}
-                        disabled={loading}
-                        className="w-full mt-8 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl transition"
-                    >
+                {/* UTR Number */}
 
-                        {loading ? (
-                            "Submitting..."
-                        ) : (
-                            <>
-                                <FaCheckCircle className="inline mr-2" />
-                                I've Completed Payment
-                            </>
-                        )}
+<div className="mt-6">
 
-                    </button>
+    <label className="block font-semibold text-gray-700 mb-2">
+        UTR / Transaction ID
+    </label>
 
+    <input
+        type="text"
+        value={utrNumber}
+        onChange={(e) => setUtrNumber(e.target.value)}
+        placeholder="Enter UTR Number"
+        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600"
+    />
+
+</div>
+
+{/* Payment Screenshot */}
+
+<div className="mt-6">
+
+    <label className="block font-semibold text-gray-700 mb-2">
+        Upload Payment Screenshot
+    </label>
+
+    <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setProof(e.target.files[0])}
+        className="w-full border border-gray-300 rounded-xl px-4 py-3"
+    />
+
+</div>
+<button
+    onClick={handleSubmit}
+    disabled={loading}
+    className="w-full mt-8 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl transition disabled:opacity-50"
+>
+    {loading ? "Submitting..." : "Submit Payment Proof"}
+</button>
                     <a
                         href="https://wa.me/917994573013"
                         target="_blank"

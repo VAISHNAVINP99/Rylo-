@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,9 @@ import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function Services() {
     const [services, setServices] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+
+const servicesPerPage = 8;
     const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
@@ -43,6 +46,13 @@ export default function Services() {
             console.log(error);
         }
     };
+
+    const totalPages = Math.ceil(services.length / servicesPerPage);
+
+const currentServices = useMemo(() => {
+    const start = (currentPage - 1) * servicesPerPage;
+    return services.slice(start, start + servicesPerPage);
+}, [services, currentPage]);
 
     if (!services.length) {
         return (
@@ -95,7 +105,7 @@ export default function Services() {
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-                        {services.map((service) => (
+                       {currentServices.map((service) => (
                             <div
                                 key={service.id}
                                  data-testid="service-card"
@@ -166,6 +176,59 @@ export default function Services() {
                     </div>
                 </div>
             </section>
+
+
+
+            {/* Pagination */}
+
+<div className="flex justify-center items-center mt-14 gap-2 flex-wrap">
+
+    <button
+        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        disabled={currentPage === 1}
+        className={`px-5 py-2 rounded-lg font-semibold transition
+            ${
+                currentPage === 1
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-purple-700 text-white hover:bg-purple-800"
+            }`}
+    >
+        Previous
+    </button>
+
+    {[...Array(totalPages)].map((_, index) => (
+        <button
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={`w-10 h-10 rounded-lg font-semibold transition
+                ${
+                    currentPage === index + 1
+                        ? "bg-purple-700 text-white"
+                        : "bg-gray-200 hover:bg-purple-100"
+                }`}
+        >
+            {index + 1}
+        </button>
+    ))}
+
+    <button
+        onClick={() =>
+            setCurrentPage((prev) =>
+                Math.min(prev + 1, totalPages)
+            )
+        }
+        disabled={currentPage === totalPages}
+        className={`px-5 py-2 rounded-lg font-semibold transition
+            ${
+                currentPage === totalPages
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-purple-700 text-white hover:bg-purple-800"
+            }`}
+    >
+        Next
+    </button>
+
+</div>
 
             <Footer />
             <WhatsAppButton />

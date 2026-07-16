@@ -22,20 +22,20 @@ useEffect(() => {
       <div className="max-w-7xl mx-auto px-4 lg:px-8 py-4 flex justify-between items-center">
 
 {/* logo */}
-     <Link to="/" className="flex items-center gap-3">
-
-    {navbar?.logo ? (
-        <img
-            src={`https://api.rylosupport.in/storage/${navbar.logo}`}
-            alt="RYLO"
-            className="h-14 w-auto"
-        />
+<Link to="/" className="flex items-center">
+  {navbar ? (
+    navbar.logo ? (
+      <img
+        src={`https://api.rylosupport.in/storage/${navbar.logo}`}
+        alt="RYLO"
+        className="h-14 w-auto object-contain"
+      />
     ) : (
-        <h1 className="text-3xl font-extrabold text-purple-700">
-            RYLO
-        </h1>
-    )}
-
+      <h1 className="text-3xl font-bold text-purple-700">
+        RYLO
+      </h1>
+    )
+  ) : null}
 </Link>
 
         {/* Desktop Menu */}
