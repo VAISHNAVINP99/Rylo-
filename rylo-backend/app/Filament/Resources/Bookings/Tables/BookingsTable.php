@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Bookings\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
    use Filament\Actions\Action;
 use Filament\Forms\Components\Select;

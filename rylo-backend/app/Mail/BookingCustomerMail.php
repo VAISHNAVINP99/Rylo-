@@ -29,7 +29,7 @@ class BookingCustomerMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Payment Verified & Booking Confirmed | RYLO Support Services',
+            subject: ' Booking Confirmed | RYLO Support Services',
         );
     }
 
