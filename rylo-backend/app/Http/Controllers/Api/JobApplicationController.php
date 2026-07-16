@@ -50,7 +50,7 @@ class JobApplicationController extends Controller
         'status' => 'Pending',
     ]);
 
-    Mail::to('vaishnavinp99@gmail.com')
+    Mail::to('rylosupportservices@gmail.com')
     ->send(new JobApplicationAdminMail($application));
 
 Mail::to($application->email)
