@@ -64,16 +64,17 @@ class JobApplicationsTable
                     ->openUrlInNewTab()
                     ->formatStateUsing(fn () => 'Download'),
 
-                TextColumn::make('status')
-                    ->badge()
-                    ->sortable()
-                    ->color(fn (string $state): string => match ($state) {
-                        'Pending' => 'warning',
-                        'Reviewed' => 'info',
-                        'Selected' => 'success',
-                        'Rejected' => 'danger',
-                        default => 'gray',
-                    }),
+              TextColumn::make('status')
+    ->badge()
+    ->searchable(['status'])
+    ->sortable()
+    ->color(fn (string $state): string => match ($state) {
+        'Pending' => 'warning',
+        'Reviewed' => 'info',
+        'Selected' => 'success',
+        'Rejected' => 'danger',
+        default => 'gray',
+    }),
 
                 TextColumn::make('created_at')
                     ->label('Applied On')

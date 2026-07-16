@@ -8,6 +8,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
    use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingCustomerMail;
 
 class BookingsTable
 {
@@ -35,16 +37,35 @@ class BookingsTable
                     ->sortable(),
                 TextColumn::make('location')
                     ->searchable(),
+
+                    ImageColumn::make('payment_proof')
+    ->disk('public')
+    ->height(60),
+
+TextColumn::make('utr_number')
+    ->searchable(),
+
+TextColumn::make('payment_status')
+    ->badge()
+    ->color(fn (string $state): string => match ($state) {
+        'Pending' => 'gray',
+        'Waiting Verification' => 'warning',
+        'Paid' => 'success',
+        'Rejected' => 'danger',
+        default => 'gray',
+    }),
                     
-                      TextColumn::make('status')
-            ->badge()
-            ->color(fn (string $state) => match ($state) {
-                'Pending' => 'warning',
-                'Confirmed' => 'info',
-                'Completed' => 'success',
-                'Cancelled' => 'danger',
-                default => 'gray',
-            }),
+               TextColumn::make('status')
+    ->badge()
+    ->searchable()
+    ->sortable()
+    ->color(fn (string $state): string => match ($state) {
+        'Pending' => 'warning',
+        'Confirmed' => 'info',
+        'Completed' => 'success',
+        'Cancelled' => 'danger',
+        default => 'gray',
+    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -84,6 +105,20 @@ Action::make('changeStatus')
         ]);
 
           }),
+Action::make('verifyPayment')
+    ->label('Verify Payment')
+    ->color('success')
+    ->requiresConfirmation()
+    ->action(function ($record) {
+
+        $record->update([
+            'payment_status' => 'Paid',
+            'status' => 'Confirmed',
+        ]);
+
+        Mail::to($record->email)
+            ->send(new BookingCustomerMail($record));
+    }),
 
             ])
             ->toolbarActions([

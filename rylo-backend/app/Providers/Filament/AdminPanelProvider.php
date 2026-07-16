@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
     ->id('admin')
     ->path('admin')
     ->brandName('RYLO SUPPORT')
+    ->favicon(asset('favicon.png'))
     ->sidebarCollapsibleOnDesktop()
 
     ->login()

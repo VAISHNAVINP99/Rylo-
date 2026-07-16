@@ -28,7 +28,7 @@ class HeroSectionForm
                     ->default('Book Service'),
                 TextInput::make('button1_link')
                     ->required()
-                    ->default('/book-now'),
+                    ->default('/services'),
                 TextInput::make('button2_text')
                     ->required()
                     ->default('WhatsApp'),

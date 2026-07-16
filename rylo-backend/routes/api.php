@@ -62,6 +62,7 @@ Route::put('/bookings/{id}', [BookingController::class, 'update']);
 Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
 
 Route::post('/bookings/{booking}/payment', [BookingController::class, 'payment']);
+Route::post('/bookings/{id}/payment-proof', [BookingController::class, 'submitPaymentProof']);
 
 Route::apiResource(
     'contact-enquiries',
@@ -82,4 +83,5 @@ Route::get('/privacy-policy', [PrivacyPolicyController::class,'index']);
 Route::get('/navbar', [NavbarController::class, 'index']);
 
 Route::get('/payment-setting', [PaymentController::class, 'index']);
+
 

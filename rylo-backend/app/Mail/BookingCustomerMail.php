@@ -29,7 +29,7 @@ class BookingCustomerMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Booking Confirmation - RYLO Support Services',
+            subject: 'Payment Verified & Booking Confirmed | RYLO Support Services',
         );
     }
 
@@ -42,12 +42,20 @@ class BookingCustomerMail extends Mailable
             view: 'emails.booking-customer',
             with: [
                 'booking' => $this->booking,
+                'customerName' => $this->booking->customer_name,
+                'service' => optional($this->booking->service)->title,
+                'bookingDate' => $this->booking->date,
+                'bookingTime' => $this->booking->time,
+                'location' => $this->booking->location,
+                'price' => $this->booking->price,
+                'status' => $this->booking->status,
+                'paymentStatus' => $this->booking->payment_status,
             ],
         );
     }
 
     /**
-     * Get the attachments.
+     * Get the attachments for the message.
      */
     public function attachments(): array
     {

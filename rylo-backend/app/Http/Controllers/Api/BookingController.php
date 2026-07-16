@@ -120,6 +120,29 @@ public function payment(Booking $booking)
     ]);
 }
 
+public function submitPaymentProof(Request $request, $id)
+{
+    $request->validate([
+        'utr_number' => 'required|string|max:255',
+        'payment_proof' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    $booking = Booking::findOrFail($id);
+
+    $path = $request->file('payment_proof')->store('payment-proofs', 'public');
+
+    $booking->update([
+        'utr_number' => $request->utr_number,
+        'payment_proof' => $path,
+        'payment_status' => 'Waiting Verification',
+        'status' => 'Pending',
+    ]);
+
+    return response()->json([
+        'message' => 'Payment proof submitted successfully'
+    ]);
+}
+
     /**
      * Delete Booking
      */
